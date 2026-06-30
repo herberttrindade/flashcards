@@ -189,10 +189,12 @@
     border-radius: 100px;
     border: 1px solid currentColor;
   }
+  .level-badge.lvl-A1{ color: #5a8a6a; }
   .level-badge.lvl-A2{ color: #6a9e7a; }
   .level-badge.lvl-B1{ color: #5b8fb0; }
   .level-badge.lvl-B2{ color: #b08a3e; }
   .level-badge.lvl-C1{ color: #b5654a; }
+  .face.back .level-badge.lvl-A1{ color: #8fc99e; }
   .face.back .level-badge.lvl-A2{ color: #a9d3b4; }
   .face.back .level-badge.lvl-B1{ color: #9ec9e8; }
   .face.back .level-badge.lvl-B2{ color: #e9c98a; }
@@ -346,14 +348,23 @@
 <div class="stats-row" id="statsRow"></div>
 
 <div class="controls">
+  <select id="sourceFilter">
+    <option value="all">Words + Phrases (mixed)</option>
+    <option value="phrases">Phrases only (idioms, phrasal verbs, collocations)</option>
+    <option value="words">Words only</option>
+  </select>
   <select id="deckFilter"></select>
   <select id="levelFilter">
     <option value="all">All levels</option>
+    <option value="A1">A1</option>
     <option value="A2">A2</option>
     <option value="B1">B1</option>
     <option value="B2">B2</option>
     <option value="C1">C1</option>
   </select>
+  <button class="ghost" id="exportBtn" title="Download your progress as a file">Export progress</button>
+  <button class="ghost" id="importBtn" title="Load progress from a file">Import progress</button>
+  <input type="file" id="importInput" accept=".json" style="display:none;">
   <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
 </div>
 
@@ -368,7 +379,8 @@
 <script>
 (function(){
   const STORAGE_KEY = 'flashcards_srs_progress_v1';
-  const JSON_PATH = 'english_flashcards.json';
+  const PHRASES_JSON_PATH = 'english_flashcards.json';
+  const WORDS_JSON_PATH = 'english_words.json';
 
   let allCards = [];
   let progress = {};   // id -> { interval, ease, reps, due (timestamp), lapses }
@@ -376,6 +388,7 @@
   let currentIndex = 0;
   let currentFilter = 'all';
   let currentLevel = 'all';
+  let currentSource = 'all'; // 'all' | 'phrases' | 'words'
   let flipped = false;
 
   const stage = document.getElementById('stage');
@@ -455,6 +468,11 @@
 
   function buildQueue(){
     let pool = allCards.map((c, i) => ({...c, _id: cardId(c, i)}));
+    if(currentSource === 'phrases'){
+      pool = pool.filter(c => c.type !== 'Word');
+    } else if(currentSource === 'words'){
+      pool = pool.filter(c => c.type === 'Word');
+    }
     if(currentFilter !== 'all'){
       pool = pool.filter(c => c.type === currentFilter);
     }
@@ -476,6 +494,11 @@
 
   function renderStats(){
     let pool = allCards.map((c,i) => ({...c, _id: cardId(c,i)}));
+    if(currentSource === 'phrases'){
+      pool = pool.filter(c => c.type !== 'Word');
+    } else if(currentSource === 'words'){
+      pool = pool.filter(c => c.type === 'Word');
+    }
     if(currentFilter !== 'all') pool = pool.filter(c => c.type === currentFilter);
     if(currentLevel !== 'all') pool = pool.filter(c => c.level === currentLevel);
     const dueCount = pool.filter(c => isDue(c._id) && !isNew(c._id)).length;
@@ -587,13 +610,24 @@
   }
 
   function populateDeckFilter(){
-    const types = Array.from(new Set(allCards.map(c => c.type)));
-    deckFilter.innerHTML = `<option value="all">All decks (${allCards.length})</option>` +
+    let pool = allCards;
+    if(currentSource === 'phrases') pool = pool.filter(c => c.type !== 'Word');
+    if(currentSource === 'words') pool = pool.filter(c => c.type === 'Word');
+    const types = Array.from(new Set(pool.map(c => c.type)));
+    deckFilter.innerHTML = `<option value="all">All decks (${pool.length})</option>` +
       types.map(t => {
-        const count = allCards.filter(c => c.type === t).length;
+        const count = pool.filter(c => c.type === t).length;
         return `<option value="${t}">${t} (${count})</option>`;
       }).join('');
+    currentFilter = 'all';
   }
+
+  document.getElementById('sourceFilter').addEventListener('change', (e) => {
+    currentSource = e.target.value;
+    populateDeckFilter();
+    buildQueue();
+    renderCard();
+  });
 
   deckFilter.addEventListener('change', () => {
     currentFilter = deckFilter.value;
@@ -605,6 +639,59 @@
     currentLevel = e.target.value;
     buildQueue();
     renderCard();
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      app: 'english-flashcards-srs',
+      version: 1,
+      progress: progress
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0,10);
+    a.href = url;
+    a.download = `flashcards-progress-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  });
+
+  const importInput = document.getElementById('importInput');
+  document.getElementById('importBtn').addEventListener('click', () => {
+    importInput.click();
+  });
+  importInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try{
+        const payload = JSON.parse(evt.target.result);
+        const incoming = payload.progress || payload; // accept raw progress object too
+        const incomingCount = Object.keys(incoming).length;
+        const currentCount = Object.keys(progress).length;
+        const proceed = confirm(
+          `This file has progress for ${incomingCount} card(s).\n` +
+          `Your current device has progress for ${currentCount} card(s).\n\n` +
+          `Importing will MERGE this in, overwriting any cards that exist in both ` +
+          `(the imported file wins for conflicts). Continue?`
+        );
+        if(!proceed) return;
+        progress = { ...progress, ...incoming };
+        saveProgress();
+        buildQueue();
+        renderCard();
+        alert('Progress imported successfully.');
+      } catch(err){
+        alert('Could not read this file. Make sure it is a progress file exported from this app.');
+      }
+      importInput.value = '';
+    };
+    reader.readAsText(file);
   });
 
   resetBtn.addEventListener('click', () => {
@@ -619,19 +706,37 @@
   async function init(){
     loadProgress();
     try{
-      const res = await fetch(JSON_PATH);
-      if(!res.ok) throw new Error('HTTP ' + res.status);
-      const data = await res.json();
-      allCards = data.cards || [];
-      if(allCards.length === 0) throw new Error('No cards found in JSON');
+      const [phrasesRes, wordsRes] = await Promise.allSettled([
+        fetch(PHRASES_JSON_PATH),
+        fetch(WORDS_JSON_PATH)
+      ]);
+
+      let phraseCards = [];
+      let wordCards = [];
+
+      if(phrasesRes.status === 'fulfilled' && phrasesRes.value.ok){
+        const data = await phrasesRes.value.json();
+        phraseCards = data.cards || [];
+      }
+      if(wordsRes.status === 'fulfilled' && wordsRes.value.ok){
+        const data = await wordsRes.value.json();
+        wordCards = data.cards || [];
+      }
+
+      allCards = [...phraseCards, ...wordCards];
+
+      if(allCards.length === 0){
+        throw new Error('Neither JSON file could be loaded');
+      }
+
       populateDeckFilter();
       buildQueue();
       renderCard();
     } catch(err){
       stage.innerHTML = `
         <div class="empty-state">
-          <h2>Couldn't load the card file</h2>
-          <p>Make sure <strong>${JSON_PATH}</strong> is in the same folder as this HTML file, then reload the page.</p>
+          <h2>Couldn't load the card files</h2>
+          <p>Make sure <strong>${PHRASES_JSON_PATH}</strong> and/or <strong>${WORDS_JSON_PATH}</strong> are in the same folder as this HTML file, then reload the page.</p>
           <p style="font-size:11px; opacity:0.6;">${err.message}</p>
         </div>`;
     }
