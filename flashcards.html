@@ -164,18 +164,39 @@
   }
   .face.back{ transform: rotateY(180deg); background: var(--ink-soft); color: var(--parchment); border:1px solid var(--line); }
 
+  .tag-row{
+    display:flex;
+    align-items:center;
+    gap: 7px;
+    margin-bottom: 18px;
+  }
   .face .type-tag{
-    align-self:flex-start;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-weight: 700;
     padding: 4px 10px;
     border-radius: 100px;
-    margin-bottom: 18px;
   }
   .face.front .type-tag{ background: rgba(26,31,46,0.08); color: var(--rust); }
   .face.back .type-tag{ background: rgba(212,162,76,0.18); color: var(--amber-soft); }
+
+  .level-badge{
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 4px 9px;
+    border-radius: 100px;
+    border: 1px solid currentColor;
+  }
+  .level-badge.lvl-A2{ color: #6a9e7a; }
+  .level-badge.lvl-B1{ color: #5b8fb0; }
+  .level-badge.lvl-B2{ color: #b08a3e; }
+  .level-badge.lvl-C1{ color: #b5654a; }
+  .face.back .level-badge.lvl-A2{ color: #a9d3b4; }
+  .face.back .level-badge.lvl-B1{ color: #9ec9e8; }
+  .face.back .level-badge.lvl-B2{ color: #e9c98a; }
+  .face.back .level-badge.lvl-C1{ color: #e8a48f; }
 
   .face-content{
     flex:1;
@@ -326,6 +347,13 @@
 
 <div class="controls">
   <select id="deckFilter"></select>
+  <select id="levelFilter">
+    <option value="all">All levels</option>
+    <option value="A2">A2</option>
+    <option value="B1">B1</option>
+    <option value="B2">B2</option>
+    <option value="C1">C1</option>
+  </select>
   <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
 </div>
 
@@ -347,6 +375,7 @@
   let queue = [];
   let currentIndex = 0;
   let currentFilter = 'all';
+  let currentLevel = 'all';
   let flipped = false;
 
   const stage = document.getElementById('stage');
@@ -429,6 +458,9 @@
     if(currentFilter !== 'all'){
       pool = pool.filter(c => c.type === currentFilter);
     }
+    if(currentLevel !== 'all'){
+      pool = pool.filter(c => c.level === currentLevel);
+    }
     // due cards first (sorted by most overdue), then new cards
     const due = pool.filter(c => isDue(c._id) && !isNew(c._id));
     const fresh = pool.filter(c => isNew(c._id));
@@ -445,6 +477,7 @@
   function renderStats(){
     let pool = allCards.map((c,i) => ({...c, _id: cardId(c,i)}));
     if(currentFilter !== 'all') pool = pool.filter(c => c.type === currentFilter);
+    if(currentLevel !== 'all') pool = pool.filter(c => c.level === currentLevel);
     const dueCount = pool.filter(c => isDue(c._id) && !isNew(c._id)).length;
     const newCount = pool.filter(c => isNew(c._id)).length;
     const masteredCount = pool.filter(c => isMastered(c._id)).length;
@@ -489,13 +522,19 @@
         <div class="card" id="flipCard">
           <div class="face front">
             <div class="dial">${dialSvg(s.interval)}<div class="ival">${s.interval}d</div></div>
-            <span class="type-tag">${card.type}</span>
+            <div class="tag-row">
+              <span class="type-tag">${card.type}</span>
+              <span class="level-badge lvl-${card.level || 'B1'}">${card.level || ''}</span>
+            </div>
             <div class="face-content"><div class="front-text">${card.front}</div></div>
             <div class="hint">Tap card to reveal</div>
           </div>
           <div class="face back">
             <div class="dial">${dialSvg(s.interval)}<div class="ival">${s.interval}d</div></div>
-            <span class="type-tag">${card.type}</span>
+            <div class="tag-row">
+              <span class="type-tag">${card.type}</span>
+              <span class="level-badge lvl-${card.level || 'B1'}">${card.level || ''}</span>
+            </div>
             <div class="face-content">
               <div class="back-stack">
                 <div class="back-text">${card.back}</div>
@@ -558,6 +597,12 @@
 
   deckFilter.addEventListener('change', () => {
     currentFilter = deckFilter.value;
+    buildQueue();
+    renderCard();
+  });
+
+  document.getElementById('levelFilter').addEventListener('change', (e) => {
+    currentLevel = e.target.value;
     buildQueue();
     renderCard();
   });
