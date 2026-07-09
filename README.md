@@ -25,7 +25,11 @@ Everything (review progress and imported decks) is saved in the browser's `local
 
 ## Running locally
 
-Card data is loaded with `fetch()`, which most browsers block for pages opened directly as a `file://` path. Serve the folder over HTTP instead, from inside the project directory:
+Card data is loaded with `fetch()`, which most browsers restrict for pages opened directly as a `file://` path. There are two ways to run it:
+
+### Option A — local HTTP server (recommended)
+
+Works in every browser and also enables automatic same-folder JSON deck discovery. From inside the project directory:
 
 ```bash
 python3 -m http.server 8791
@@ -33,7 +37,21 @@ python3 -m http.server 8791
 
 Then open **http://localhost:8791/flashcards.html**.
 
-(Any static server works — e.g. `npx serve` — but `python3 -m http.server` is the only one that also enables the automatic same-folder JSON deck discovery described above, since it publishes a directory listing.)
+(Any static server works — e.g. `npx serve` — but `python3 -m http.server` is the only one that also enables the automatic deck discovery described above, since it publishes a directory listing.)
+
+### Option B — open the file directly from the file system (no server)
+
+Double-click `flashcards.html`, or drag it into a browser window / use **File → Open File…**. Whether the two bundled JSON decks load this way depends on the browser's `file://` security policy:
+
+- **Firefox** loads local JSON files fine over `file://` out of the box — no setup needed.
+- **Chrome, Edge and Safari** block `fetch()` of local files from a `file://` page by default (CORS). You'll see the app's "Couldn't load the card files" screen instead of your decks. Workarounds:
+  - Use Firefox instead, or fall back to Option A.
+  - *(Advanced, macOS, Chrome only)* launch a dedicated Chrome instance with local file access enabled — don't use your regular profile for this, it weakens `file://` security for that whole session:
+    ```bash
+    open -na "Google Chrome" --args --allow-file-access-from-files --user-data-dir="/tmp/chrome-flashcards" "file:///$(pwd)/flashcards.html"
+    ```
+
+Either way, imported decks and progress are still saved to `localStorage` — just remember that a `file://` page and an `http://localhost:...` page are different origins, so they keep **separate** local storage.
 
 ## Running on GitHub (GitHub Pages)
 
