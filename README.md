@@ -23,6 +23,23 @@ Everything (review progress and imported decks) is saved in the browser's `local
 - Clearing browser data / using a private window wipes it.
 - Nothing is synced automatically across devices — use **Export progress** / **Export decks** to back up and **Import progress** / **Import deck** to restore elsewhere.
 
+## Downloading the ZIP and running it (no git required)
+
+If you just want the app on your computer without using `git`:
+
+1. Go to **https://github.com/herberttrindade/flashcards**.
+2. Click the green **Code** button, then **Download ZIP**.
+3. Find the downloaded file (usually in your `Downloads` folder) — it'll be named something like `flashcards-main.zip` — and double-click it to extract it. This creates a folder named `flashcards-main`.
+4. Open that folder. You should see `flashcards.html`, `english_flashcards.json`, `english_words.json` and `README.md` inside it.
+5. Now run it using one of the two options below:
+   - **Simplest**: double-click `flashcards.html` inside that folder. This opens it straight from your file system — see [Option B](#option-b--open-the-file-directly-from-the-file-system-no-server) for which browsers this works in without extra setup (Firefox does; Chrome/Edge/Safari need a workaround or Option A instead).
+   - **Most reliable (works in any browser)**: open a terminal, navigate into the extracted folder, and start a local server:
+     ```bash
+     cd ~/Downloads/flashcards-main
+     python3 -m http.server 8791
+     ```
+     Then open **http://localhost:8791/flashcards.html** in your browser.
+
 ## Running locally
 
 Card data is loaded with `fetch()`, which most browsers restrict for pages opened directly as a `file://` path. There are two ways to run it:
