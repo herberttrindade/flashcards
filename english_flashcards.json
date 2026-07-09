@@ -1,5 +1,5 @@
 {
-  "total": 597,
+  "total": 697,
   "cards": [
     {
       "type": "Idiom",
@@ -4776,6 +4776,806 @@
       "meaning": "To earn a lot of money.",
       "example": "He made a fortune by investing early.",
       "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The contractor cut corners on the wiring to save money.",
+      "back": "Cut corners",
+      "meaning": "To do something in the easiest or cheapest way, often sacrificing quality.",
+      "example": "Don't cut corners when it comes to safety.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He threw his colleague under the bus during the meeting.",
+      "back": "Throw someone under the bus",
+      "meaning": "To betray or blame someone else to protect yourself.",
+      "example": "She refused to throw her team under the bus for the mistake.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "She's been burning the candle at both ends studying and working nights.",
+      "back": "Burn the candle at both ends",
+      "meaning": "To work or party too much without enough rest.",
+      "example": "He'll burn out if he keeps burning the candle at both ends.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "You need to get your act together before the deadline.",
+      "back": "Get your act together",
+      "meaning": "To start organizing yourself and behaving more effectively.",
+      "example": "He finally got his act together and finished the report.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "You can't have your cake and eat it too — choose one option.",
+      "back": "Have your cake and eat it too",
+      "meaning": "To want two good things that are impossible to have at the same time.",
+      "example": "She wants a promotion without extra responsibility; she wants to have her cake and eat it too.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "I've said what I think — let the chips fall where they may.",
+      "back": "Let the chips fall where they may",
+      "meaning": "To let events happen naturally without trying to control the outcome.",
+      "example": "He submitted the report and let the chips fall where they may.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Delays on this project are par for the course.",
+      "back": "Par for the course",
+      "meaning": "Typical or expected, especially something unfortunate.",
+      "example": "Traffic on Fridays is par for the course in this city.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He tried to pull the wool over his manager's eyes about the numbers.",
+      "back": "Pull the wool over someone's eyes",
+      "meaning": "To deceive someone.",
+      "example": "You can't pull the wool over her eyes — she checks everything.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Don't put all your eggs in one basket — apply to several jobs.",
+      "back": "Put all your eggs in one basket",
+      "meaning": "To risk everything on a single plan or option.",
+      "example": "Investing in only one stock means putting all your eggs in one basket.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The new coach raised the bar for the entire team.",
+      "back": "Raise the bar",
+      "meaning": "To set a higher standard.",
+      "example": "Her performance raised the bar for everyone else.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He didn't read the room and made an awkward joke.",
+      "back": "Read the room",
+      "meaning": "To sense the mood of a group before speaking or acting.",
+      "example": "A good speaker knows how to read the room.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The hotel was clean but pretty run of the mill.",
+      "back": "Run of the mill",
+      "meaning": "Ordinary, not special.",
+      "example": "It was a run-of-the-mill performance, nothing memorable.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "After the accident, he finally saw the light and quit smoking.",
+      "back": "See the light",
+      "meaning": "To finally understand or agree with something after resisting it.",
+      "example": "She saw the light and changed her approach to the project.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Taking on three projects at once, she spread herself too thin.",
+      "back": "Spread yourself too thin",
+      "meaning": "To take on too many tasks and not do any of them well.",
+      "example": "Don't spread yourself too thin — focus on one goal.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Working from home two days a week gives her the best of both worlds.",
+      "back": "The best of both worlds",
+      "meaning": "A situation that combines the advantages of two different things.",
+      "example": "The hybrid car offers the best of both worlds.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He threw caution to the wind and quit his job to travel.",
+      "back": "Throw caution to the wind",
+      "meaning": "To act without worrying about the risk.",
+      "example": "They threw caution to the wind and invested their savings.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The manager turned a blind eye to the late arrivals.",
+      "back": "Turn a blind eye",
+      "meaning": "To deliberately ignore something wrong.",
+      "example": "You can't turn a blind eye to safety violations.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Ever since the argument, we've been walking on eggshells around him.",
+      "back": "Walk on eggshells",
+      "meaning": "To be very careful not to upset someone.",
+      "example": "She walks on eggshells whenever her boss is in a bad mood.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "First the car broke down, then the roof leaked — when it rains it pours.",
+      "back": "When it rains it pours",
+      "meaning": "When problems happen, several tend to happen at once.",
+      "example": "She lost her job and got sick the same week; when it rains it pours.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Cheap souvenir shops are a dime a dozen in that area.",
+      "back": "A dime a dozen",
+      "meaning": "Very common and of little value.",
+      "example": "Talented singers are a dime a dozen in this city.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "They lost the game, and to add insult to injury, the star player got injured.",
+      "back": "Add insult to injury",
+      "meaning": "To make a bad situation even worse.",
+      "example": "The flight was delayed, and to add insult to injury, they lost his luggage.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The team worked against the clock to finish the launch.",
+      "back": "Against the clock",
+      "meaning": "Trying to do something quickly before a deadline.",
+      "example": "Doctors raced against the clock to save the patient.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "In this company, the founders still call the shots.",
+      "back": "Call the shots",
+      "meaning": "To be in charge and make the decisions.",
+      "example": "She's the one calling the shots on this project.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He goes running every morning, come rain or shine.",
+      "back": "Come rain or shine",
+      "meaning": "Whatever happens, without exception.",
+      "example": "The market opens every Saturday, come rain or shine.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "We don't need to worry about that now — we'll cross that bridge when we come to it.",
+      "back": "Cross that bridge when we come to it",
+      "meaning": "To deal with a problem only when it actually happens, not before.",
+      "example": "If it becomes an issue later, we'll cross that bridge when we come to it.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Can you account for the missing funds?",
+      "back": "Account for",
+      "meaning": "To explain or give a reason for something.",
+      "example": "The delay was accounted for by bad weather.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Don't bank on getting a refund.",
+      "back": "Bank on",
+      "meaning": "To rely on something happening.",
+      "example": "We're banking on good weather for the wedding.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "It all boils down to how much time we have.",
+      "back": "Boil down to",
+      "meaning": "To be the essential point of a situation.",
+      "example": "Her success boils down to hard work and patience.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The bakery decided to branch out into catering.",
+      "back": "Branch out",
+      "meaning": "To expand into new areas.",
+      "example": "He's branching out from photography into video.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She brushed aside his concerns about the budget.",
+      "back": "Brush aside",
+      "meaning": "To dismiss something as unimportant.",
+      "example": "The coach brushed aside questions about his future.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "We need to buckle down if we want to meet the deadline.",
+      "back": "Buckle down",
+      "meaning": "To start working hard and seriously.",
+      "example": "He buckled down and finished his thesis in a month.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Everyone chipped in to buy the farewell gift.",
+      "back": "Chip in",
+      "meaning": "To contribute money or help.",
+      "example": "Could you chip in for the pizza?",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The documentary delves into the causes of the crisis.",
+      "back": "Delve into",
+      "meaning": "To research or examine something thoroughly.",
+      "example": "Let's delve into the data before deciding.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Try not to dwell on your mistakes.",
+      "back": "Dwell on",
+      "meaning": "To think or talk about something for too long, usually something negative.",
+      "example": "She kept dwelling on what could have gone wrong.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The company fended off a hostile takeover.",
+      "back": "Fend off",
+      "meaning": "To defend yourself against something.",
+      "example": "He fended off questions about the scandal.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The report glossed over the safety concerns.",
+      "back": "Gloss over",
+      "meaning": "To avoid discussing something in detail, often to hide a problem.",
+      "example": "He tends to gloss over his own mistakes.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The whole plan hinges on getting funding approved.",
+      "back": "Hinge on",
+      "meaning": "To depend entirely on something.",
+      "example": "Her decision hinges on the test results.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "They mapped out the entire trip before leaving.",
+      "back": "Map out",
+      "meaning": "To plan something in detail.",
+      "example": "Let's map out a strategy for next quarter.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The company scaled back production due to low demand.",
+      "back": "Scale back",
+      "meaning": "To reduce the size or extent of something.",
+      "example": "We had to scale back our plans for the event.",
+      "level": "C1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The teacher singled him out for praise.",
+      "back": "Single out",
+      "meaning": "To choose one person from a group for special attention.",
+      "example": "Don't single out one employee for criticism in front of others.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "It's important to strike a balance between work and rest.",
+      "back": "Strike a balance",
+      "meaning": "To find a satisfactory middle point between two extremes.",
+      "example": "The policy tries to strike a balance between safety and freedom.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The program aims to bridge the gap between school and work.",
+      "back": "Bridge the gap",
+      "meaning": "To reduce the difference between two things.",
+      "example": "New technology can help bridge the gap between generations.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The professor drew a parallel between the two historical events.",
+      "back": "Draw a parallel",
+      "meaning": "To point out a similarity between two things.",
+      "example": "You can draw a parallel between the two novels' themes.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The campaign aims to raise awareness about recycling.",
+      "back": "Raise awareness",
+      "meaning": "To help people know more about an issue.",
+      "example": "They organized an event to raise awareness of mental health.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The court's decision set a precedent for future cases.",
+      "back": "Set a precedent",
+      "meaning": "To establish an example that others will follow.",
+      "example": "Approving this request could set a precedent we regret.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Rising sea levels pose a threat to coastal cities.",
+      "back": "Pose a threat",
+      "meaning": "To be a possible danger.",
+      "example": "The new competitor poses a threat to smaller businesses.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Drivers should exercise caution in icy conditions.",
+      "back": "Exercise caution",
+      "meaning": "To be careful.",
+      "example": "Investors are advised to exercise caution in this market.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The campaign is gaining momentum across the country.",
+      "back": "Gain momentum",
+      "meaning": "To develop more strength or speed.",
+      "example": "The project lost momentum after the funding cuts.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "It took hours for the committee to reach a consensus.",
+      "back": "Reach a consensus",
+      "meaning": "To come to a general agreement.",
+      "example": "The team finally reached a consensus on the design.",
+      "level": "C1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Small businesses bore the brunt of the economic downturn.",
+      "back": "Bear the brunt of",
+      "meaning": "To suffer the main force or worst effects of something.",
+      "example": "The coastal areas bore the brunt of the storm.",
+      "level": "C1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The two brothers are cut from the same cloth — both stubborn and ambitious.",
+      "back": "Cut from the same cloth",
+      "meaning": "Having very similar character or qualities.",
+      "example": "She and her mentor are cut from the same cloth.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's had a chip on his shoulder since he was passed over for promotion.",
+      "back": "Have a chip on your shoulder",
+      "meaning": "To feel resentful because of a past grievance.",
+      "example": "She still has a chip on her shoulder about not going to university.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "By promising an impossible deadline, he painted himself into a corner.",
+      "back": "Paint yourself into a corner",
+      "meaning": "To get into a situation with no way out because of your own actions.",
+      "example": "The company painted itself into a corner with that contract clause.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Losing your temper will just play into their hands.",
+      "back": "Play into someone's hands",
+      "meaning": "To act in a way that gives someone an advantage they wanted.",
+      "example": "By reacting publicly, the celebrity played into the tabloid's hands.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Signing the lease before securing funding is putting the cart before the horse.",
+      "back": "Put the cart before the horse",
+      "meaning": "To do things in the wrong order.",
+      "example": "Hiring staff before finding clients puts the cart before the horse.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "After winning the award, he rested on his laurels for years.",
+      "back": "Rest on your laurels",
+      "meaning": "To be satisfied with past achievements and stop trying to improve.",
+      "example": "The company can't afford to rest on its laurels in this market.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The rookie ran circles around the veteran players.",
+      "back": "Run circles around someone",
+      "meaning": "To be much better or faster than someone else.",
+      "example": "She runs circles around the rest of the sales team.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The board sent the CEO packing after the scandal.",
+      "back": "Send someone packing",
+      "meaning": "To force someone to leave, often abruptly.",
+      "example": "The home team sent their rivals packing with a 5-0 win.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She didn't want to show her hand before the negotiation.",
+      "back": "Show your hand",
+      "meaning": "To reveal your plans or intentions.",
+      "example": "The company finally showed its hand at the press conference.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He preferred to sit on the sidelines rather than get involved in office politics.",
+      "back": "Sit on the sidelines",
+      "meaning": "To avoid taking an active part in something.",
+      "example": "Investors sat on the sidelines during the uncertainty.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Their early collaboration sowed the seeds of a lasting partnership.",
+      "back": "Sow the seeds of",
+      "meaning": "To do something that will cause a particular result later.",
+      "example": "The policy sowed the seeds of discontent among workers.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The harsh review took the wind out of her sails.",
+      "back": "Take the wind out of someone's sails",
+      "meaning": "To make someone suddenly less confident or enthusiastic.",
+      "example": "His blunt comment took the wind out of the team's sails.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The champion threw down the gauntlet to any challenger.",
+      "back": "Throw down the gauntlet",
+      "meaning": "To challenge someone.",
+      "example": "The startup threw down the gauntlet to the industry giants.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "New employees are expected to toe the line during training.",
+      "back": "Toe the line",
+      "meaning": "To follow the rules or expected standards.",
+      "example": "He refused to toe the line and was eventually let go.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She's always worn her heart on her sleeve.",
+      "back": "Wear your heart on your sleeve",
+      "meaning": "To show your emotions openly.",
+      "example": "He wears his heart on his sleeve, so you always know how he feels.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The two departments have been at loggerheads over the budget for months.",
+      "back": "At loggerheads",
+      "meaning": "In serious disagreement.",
+      "example": "The neighbors are at loggerheads over the property line.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "We've discussed this decision three times — let's stop beating a dead horse.",
+      "back": "Beat a dead horse",
+      "meaning": "To keep talking about something that's already been settled, uselessly.",
+      "example": "Arguing about it now is just beating a dead horse.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The two rivals finally buried the hatchet after years of feuding.",
+      "back": "Bury the hatchet",
+      "meaning": "To end a conflict and become friendly again.",
+      "example": "It's time we buried the hatchet and moved forward.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "It took months for him to come to terms with the diagnosis.",
+      "back": "Come to terms with",
+      "meaning": "To accept a difficult situation.",
+      "example": "She's still coming to terms with the loss.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Remote work cuts both ways — more freedom, less structure.",
+      "back": "Cut both ways",
+      "meaning": "To have both advantages and disadvantages.",
+      "example": "That argument cuts both ways.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The minister fell on his sword after the policy failed.",
+      "back": "Fall on your sword",
+      "meaning": "To accept blame or resign to protect others.",
+      "example": "He fell on his sword to shield his team from criticism.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Part-time workers often get the short end of the stick with benefits.",
+      "back": "Get the short end of the stick",
+      "meaning": "To be treated unfairly compared to others.",
+      "example": "He felt he got the short end of the stick in the settlement.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Her decision to quit a stable job went against the grain.",
+      "back": "Go against the grain",
+      "meaning": "To be different from what is usual or expected.",
+      "example": "This approach goes against the grain of traditional management.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "By the final round, the team was just grasping at straws.",
+      "back": "Grasp at straws",
+      "meaning": "To try desperate, unlikely solutions when in trouble.",
+      "example": "His excuses were grasping at straws.",
+      "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She hedged her bets by applying to both grad school and jobs.",
+      "back": "Hedge your bets",
+      "meaning": "To reduce risk by supporting more than one option.",
+      "example": "The investor hedged his bets across several markets.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The latest figures bear out our earlier predictions.",
+      "back": "Bear out",
+      "meaning": "To confirm or support a statement or theory.",
+      "example": "His account was borne out by witnesses.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The government brought its full resources to bear on the crisis.",
+      "back": "Bring to bear",
+      "meaning": "To use available resources or influence to achieve something.",
+      "example": "She brought years of experience to bear on the negotiation.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Several colleagues chimed in with their own suggestions.",
+      "back": "Chime in",
+      "meaning": "To join a conversation, often to add agreement.",
+      "example": "He chimed in with a joke to lighten the mood.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The city is clamping down on illegal street vendors.",
+      "back": "Clamp down on",
+      "meaning": "To take strict action to stop something.",
+      "example": "Authorities clamped down on tax evasion this year.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The industry is still coming to grips with the new regulations.",
+      "back": "Come to grips with",
+      "meaning": "To begin to understand and deal with a difficult situation.",
+      "example": "It took time for him to come to grips with the change.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The family eked out a living from a small plot of land.",
+      "back": "Eke out",
+      "meaning": "To make a small or limited amount last, often with difficulty.",
+      "example": "The team eked out a narrow victory in the final minute.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "We need to factor in shipping costs before pricing the product.",
+      "back": "Factor in",
+      "meaning": "To include something when making a calculation or decision.",
+      "example": "Don't forget to factor in the holidays when planning the schedule.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "He frittered away his inheritance within a few years.",
+      "back": "Fritter away",
+      "meaning": "To waste something, especially time or money, gradually.",
+      "example": "Don't fritter away the afternoon on social media.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The building's design harks back to the Art Deco era.",
+      "back": "Hark back to",
+      "meaning": "To remind one of or return to an earlier time or idea.",
+      "example": "Her speech harked back to the company's founding principles.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "He held forth on politics for nearly an hour.",
+      "back": "Hold forth",
+      "meaning": "To speak at length about a subject, often in a way that seems boring or arrogant.",
+      "example": "She held forth about her travels at dinner.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The coach lashed out at the referee after the decision.",
+      "back": "Lash out at",
+      "meaning": "To suddenly criticize or attack someone verbally.",
+      "example": "He lashed out at journalists during the interview.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She's been mulling over the job offer for a week.",
+      "back": "Mull over",
+      "meaning": "To think about something carefully for a period of time.",
+      "example": "Take some time to mull it over before deciding.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The new director was hired to root out corruption.",
+      "back": "Root out",
+      "meaning": "To find and remove something completely, especially something bad.",
+      "example": "The audit aimed to root out inefficiencies.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "They scraped by on a single income for years.",
+      "back": "Scrape by",
+      "meaning": "To manage to survive with barely enough money or resources.",
+      "example": "The business scraped by during the recession.",
+      "level": "C2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The loan helped stave off bankruptcy.",
+      "back": "Stave off",
+      "meaning": "To prevent something bad from happening, at least temporarily.",
+      "example": "Regular exercise can help stave off illness.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "Employees are expected to exercise discretion with confidential information.",
+      "back": "Exercise discretion",
+      "meaning": "To use careful judgment about what to do or say.",
+      "example": "The judge exercised discretion in sentencing.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "She still harbors resentment over how she was treated.",
+      "back": "Harbor resentment",
+      "meaning": "To keep feelings of anger or bitterness for a long time.",
+      "example": "He denied harboring any resentment toward his former partner.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The senator wields considerable influence in the committee.",
+      "back": "Wield influence",
+      "meaning": "To have and use power over people or events.",
+      "example": "Social media stars wield surprising influence over consumer trends.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "A good mentor can instill confidence in new employees.",
+      "back": "Instill confidence",
+      "meaning": "To gradually make someone feel more confident.",
+      "example": "The coach's calm manner instilled confidence in the team.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The proposal garnered support from most departments.",
+      "back": "Garner support",
+      "meaning": "To gather backing or approval for something.",
+      "example": "The candidate struggled to garner support outside the city.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The two companies forged an alliance to enter the new market.",
+      "back": "Forge an alliance",
+      "meaning": "To create a close cooperative relationship.",
+      "example": "The countries forged an alliance after years of tension.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The underdog team defied expectations and won the championship.",
+      "back": "Defy expectations",
+      "meaning": "To do something different or better than what was predicted.",
+      "example": "Her recovery defied all medical expectations.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The CEO tried to quell fears about upcoming layoffs.",
+      "back": "Quell fears",
+      "meaning": "To make worries or concerns go away.",
+      "example": "The government's statement did little to quell public fears.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "The founder was reluctant to relinquish control of the company.",
+      "back": "Relinquish control",
+      "meaning": "To give up power or authority over something.",
+      "example": "She had to relinquish control of the project after the reorganization.",
+      "level": "C2"
+    },
+    {
+      "type": "Collocation",
+      "front": "After years of conflict, the two leaders extended an olive branch.",
+      "back": "Extend an olive branch",
+      "meaning": "To offer to make peace with someone.",
+      "example": "He extended an olive branch to his estranged brother.",
+      "level": "C2"
     }
   ]
 }

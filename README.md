@@ -7,7 +7,7 @@ Scheduling uses **FSRS** (Free Spaced Repetition Scheduler, v6 weights), impleme
 ## Features
 
 - Two bundled decks: `english_words.json` (single words) and `english_flashcards.json` (idioms, phrasal verbs, collocations).
-- Filter by source (words / phrases / mixed), by deck, and by CEFR level (A1–C1).
+- Filter by source (words / phrases / mixed), by deck, and by CEFR level (A1–C2).
 - Grade each card **Again / Hard / Good / Easy** — FSRS recalculates difficulty, memory stability and the next due date.
 - **Import deck** — add your own cards from a `.csv` or `.json` file. Click **Deck format ?** next to the button for the exact columns/fields expected and downloadable sample files. Cards that already exist (same deck + front + back) are skipped automatically, so re-importing a file is safe.
 - **Export decks** — download the decks you've imported, as a JSON file you can re-import later or move to another browser/device.

@@ -204,11 +204,13 @@
   .level-badge.lvl-B1{ color: #5b8fb0; }
   .level-badge.lvl-B2{ color: #b08a3e; }
   .level-badge.lvl-C1{ color: #b5654a; }
+  .level-badge.lvl-C2{ color: #8a4a8f; }
   .face.back .level-badge.lvl-A1{ color: #8fc99e; }
   .face.back .level-badge.lvl-A2{ color: #a9d3b4; }
   .face.back .level-badge.lvl-B1{ color: #9ec9e8; }
   .face.back .level-badge.lvl-B2{ color: #e9c98a; }
   .face.back .level-badge.lvl-C1{ color: #e8a48f; }
+  .face.back .level-badge.lvl-C2{ color: #d9a8e0; }
 
   .face-content{
     flex:1;
@@ -455,6 +457,7 @@
     <option value="B1">B1</option>
     <option value="B2">B2</option>
     <option value="C1">C1</option>
+    <option value="C2">C2</option>
   </select>
   <button class="ghost" id="importDeckBtn" title="Add a new deck from a CSV or JSON file (columns/fields: front, back, meaning, example, level, type)">Import deck</button>
   <input type="file" id="importDeckInput" accept=".csv,.json,text/csv,application/json" style="display:none;">
@@ -497,7 +500,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
       <code>front</code> — required, the question side.<br>
       <code>back</code> — required, the answer side.<br>
       <code>meaning</code> / <code>example</code> — optional, shown on the back of the card.<br>
-      <code>level</code> — optional, one of A1/A2/B1/B2/C1 (defaults to B1).<br>
+      <code>level</code> — optional, one of A1/A2/B1/B2/C1/C2 (defaults to B1).<br>
       <code>type</code> — optional, the deck/category name. Rows without it can share one deck name you're asked for at import time. Include a <code>type</code> per row/entry to split one file into several decks at once.
     </p>
     <p>Cards that already exist (same deck + front + back as one already in your library) are skipped automatically, so re-importing the same file is safe.</p>
