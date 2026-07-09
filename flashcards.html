@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>English Flashcards — Spaced Repetition</title>
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#1a1f2e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Flashcards">
+<meta name="mobile-web-app-capable" content="yes">
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap');
 
@@ -532,6 +542,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
 
   const stage = document.getElementById('stage');
   const statsRow = document.getElementById('statsRow');
+  const sourceFilterEl = document.getElementById('sourceFilter');
   const deckFilter = document.getElementById('deckFilter');
   const resetBtn = document.getElementById('resetBtn');
 
@@ -628,7 +639,9 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   function loadCustomDecks(){
     try{
       const raw = localStorage.getItem(CUSTOM_DECKS_KEY);
-      return raw ? JSON.parse(raw) : [];
+      const cards = raw ? JSON.parse(raw) : [];
+      // backfill 'source' for decks saved before this field existed
+      return cards.map(c => ({ ...c, source: 'custom' }));
     }catch(e){ return []; }
   }
   function saveCustomDecks(){
@@ -643,7 +656,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     const meaning = String(raw.meaning || '').trim();
     const example = String(raw.example || '').trim();
     const level = String(raw.level || 'B1').trim();
-    return { type, front, back, meaning, example, level };
+    return { type, front, back, meaning, example, level, source: 'custom' };
   }
 
   // Identity used to detect duplicate cards on import: same deck + same front + same back
@@ -847,13 +860,15 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     return s && s.interval >= 21;
   }
 
+  // 'phrases'/'words' = the two bundled JSON files; 'custom' = imported or auto-discovered decks
+  function applySourceFilter(pool){
+    if(currentSource === 'all') return pool;
+    return pool.filter(c => c.source === currentSource);
+  }
+
   function buildQueue(){
     let pool = allCards.map((c, i) => ({...c, _id: cardId(c, i)}));
-    if(currentSource === 'phrases'){
-      pool = pool.filter(c => c.type !== 'Word');
-    } else if(currentSource === 'words'){
-      pool = pool.filter(c => c.type === 'Word');
-    }
+    pool = applySourceFilter(pool);
     if(currentFilter !== 'all'){
       pool = pool.filter(c => c.type === currentFilter);
     }
@@ -875,11 +890,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
 
   function renderStats(){
     let pool = allCards.map((c,i) => ({...c, _id: cardId(c,i)}));
-    if(currentSource === 'phrases'){
-      pool = pool.filter(c => c.type !== 'Word');
-    } else if(currentSource === 'words'){
-      pool = pool.filter(c => c.type === 'Word');
-    }
+    pool = applySourceFilter(pool);
     if(currentFilter !== 'all') pool = pool.filter(c => c.type === currentFilter);
     if(currentLevel !== 'all') pool = pool.filter(c => c.level === currentLevel);
     const dueCount = pool.filter(c => isDue(c._id) && !isNew(c._id)).length;
@@ -991,9 +1002,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   }
 
   function populateDeckFilter(){
-    let pool = allCards;
-    if(currentSource === 'phrases') pool = pool.filter(c => c.type !== 'Word');
-    if(currentSource === 'words') pool = pool.filter(c => c.type === 'Word');
+    const pool = applySourceFilter(allCards);
     const types = Array.from(new Set(pool.map(c => c.type)));
     deckFilter.innerHTML = `<option value="all">All decks (${pool.length})</option>` +
       types.map(t => {
@@ -1003,7 +1012,25 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     currentFilter = 'all';
   }
 
-  document.getElementById('sourceFilter').addEventListener('change', (e) => {
+  // Adds/removes the "Custom decks" source option depending on whether any imported/auto-discovered cards exist.
+  function updateSourceFilterOptions(){
+    const hasCustom = allCards.some(c => c.source === 'custom');
+    const existing = sourceFilterEl.querySelector('option[value="custom"]');
+    if(hasCustom && !existing){
+      const opt = document.createElement('option');
+      opt.value = 'custom';
+      opt.textContent = 'Custom decks';
+      sourceFilterEl.appendChild(opt);
+    } else if(!hasCustom && existing){
+      existing.remove();
+      if(currentSource === 'custom'){
+        currentSource = 'all';
+        sourceFilterEl.value = 'all';
+      }
+    }
+  }
+
+  sourceFilterEl.addEventListener('change', (e) => {
     currentSource = e.target.value;
     populateDeckFilter();
     buildQueue();
@@ -1173,6 +1200,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         customCards = [...customCards, ...cards];
         saveCustomDecks();
         allCards = [...allCards, ...cards];
+        updateSourceFilterOptions();
         populateDeckFilter();
         buildQueue();
         renderCard();
@@ -1230,11 +1258,11 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
 
       if(phrasesRes.status === 'fulfilled' && phrasesRes.value.ok){
         const data = await phrasesRes.value.json();
-        phraseCards = data.cards || [];
+        phraseCards = (data.cards || []).map(c => ({ ...c, source: 'phrases' }));
       }
       if(wordsRes.status === 'fulfilled' && wordsRes.value.ok){
         const data = await wordsRes.value.json();
-        wordCards = data.cards || [];
+        wordCards = (data.cards || []).map(c => ({ ...c, source: 'words' }));
       }
 
       const autoCards = await loadAutoDiscoveredDecks();
@@ -1245,6 +1273,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         throw new Error('Neither JSON file could be loaded');
       }
 
+      updateSourceFilterOptions();
       populateDeckFilter();
       buildQueue();
       renderCard();
