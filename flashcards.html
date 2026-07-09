@@ -329,6 +329,90 @@
     padding: 80px 0;
   }
 
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background: rgba(15,18,27,0.72);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 20px;
+    z-index: 100;
+  }
+  .modal-overlay.hidden{ display:none; }
+  .modal-box{
+    background: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 26px;
+    max-width: 560px;
+    width:100%;
+    max-height: 84vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow);
+  }
+  .modal-box h2{
+    font-family:'Lora', serif;
+    font-size: 19px;
+    margin: 0 0 4px;
+  }
+  .modal-box h3{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--amber-soft);
+    margin: 20px 0 8px;
+  }
+  .modal-box p{
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.55;
+    margin: 6px 0;
+  }
+  .modal-box code{
+    background: rgba(247,243,234,0.1);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  .modal-box pre{
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 11.5px;
+    line-height: 1.5;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .modal-actions{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+  .modal-actions .sample-links{ display:flex; gap: 10px; }
+  .modal-actions .sample-links a{
+    font-size: 12px;
+    color: var(--sage-soft);
+    text-decoration: underline;
+    cursor:pointer;
+  }
+  .modal-close{
+    background: var(--amber);
+    color: var(--ink);
+    border:none;
+    border-radius: 10px;
+    padding: 9px 16px;
+    font-weight:700;
+    font-size: 13px;
+    cursor:pointer;
+    font-family:'Inter', sans-serif;
+  }
+  .modal-close:hover{ background: var(--amber-soft); }
+
   @media (max-width: 480px){
     h1{ font-size: 23px; }
     .card-wrap{ height: 360px; }
@@ -362,10 +446,60 @@
     <option value="B2">B2</option>
     <option value="C1">C1</option>
   </select>
+  <button class="ghost" id="importDeckBtn" title="Add a new deck from a CSV or JSON file (columns/fields: front, back, meaning, example, level, type)">Import deck</button>
+  <input type="file" id="importDeckInput" accept=".csv,.json,text/csv,application/json" style="display:none;">
+  <button class="ghost" id="deckFormatBtn" title="See the expected CSV/JSON format for importing a deck">Deck format ?</button>
+  <button class="ghost" id="exportDecksBtn" title="Download your imported custom decks as a JSON file">Export decks</button>
   <button class="ghost" id="exportBtn" title="Download your progress as a file">Export progress</button>
   <button class="ghost" id="importBtn" title="Load progress from a file">Import progress</button>
   <input type="file" id="importInput" accept=".json" style="display:none;">
   <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
+</div>
+
+<div class="modal-overlay hidden" id="deckFormatModal">
+  <div class="modal-box">
+    <h2>Deck import format</h2>
+    <p>Only <code>front</code> and <code>back</code> are required. Everything else is optional and falls back to a default.</p>
+
+    <h3>CSV</h3>
+    <p>First row must be a header with column names (any order). Wrap a field in quotes if it contains a comma or line break.</p>
+    <pre>front,back,meaning,example,level,type
+"What does ""break the ice"" mean?",Break the ice,"To ease tension in a social setting","He told a joke to break the ice.",B2,Idiom
+Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
+
+    <h3>JSON</h3>
+    <p>Either a bare array of cards, or an object like the bundled deck files (<code>{"cards": [...]}</code>).</p>
+    <pre>{
+  "cards": [
+    {
+      "type": "French",
+      "front": "Bonjour",
+      "back": "bonjour",
+      "meaning": "hello (informal)",
+      "example": "Bonjour, ça va?",
+      "level": "A1"
+    }
+  ]
+}</pre>
+
+    <h3>Field reference</h3>
+    <p>
+      <code>front</code> — required, the question side.<br>
+      <code>back</code> — required, the answer side.<br>
+      <code>meaning</code> / <code>example</code> — optional, shown on the back of the card.<br>
+      <code>level</code> — optional, one of A1/A2/B1/B2/C1 (defaults to B1).<br>
+      <code>type</code> — optional, the deck/category name. Rows without it can share one deck name you're asked for at import time. Include a <code>type</code> per row/entry to split one file into several decks at once.
+    </p>
+    <p>Cards that already exist (same deck + front + back as one already in your library) are skipped automatically, so re-importing the same file is safe.</p>
+
+    <div class="modal-actions">
+      <div class="sample-links">
+        <a id="downloadSampleCsv">Download sample .csv</a>
+        <a id="downloadSampleJson">Download sample .json</a>
+      </div>
+      <button class="modal-close" id="closeDeckFormatModal">Got it</button>
+    </div>
+  </div>
 </div>
 
 <div class="stage" id="stage">
@@ -373,7 +507,7 @@
 </div>
 
 <div class="footer-note">
-  Grading: <strong>Again</strong> resets the card · <strong>Hard</strong> grows it slowly · <strong>Good</strong> follows the normal schedule · <strong>Easy</strong> jumps it far ahead. This is the SM‑2 algorithm — the same logic behind Anki.
+  Grading: <strong>Again</strong> resets the card · <strong>Hard</strong> grows it slowly · <strong>Good</strong> follows the normal schedule · <strong>Easy</strong> jumps it far ahead. This is the FSRS algorithm — the modern successor to SM‑2, using per-card difficulty and memory stability to predict recall.
 </div>
 
 <script>
@@ -382,8 +516,13 @@
   const PHRASES_JSON_PATH = 'english_flashcards.json';
   const WORDS_JSON_PATH = 'english_words.json';
 
+  const CUSTOM_DECKS_KEY = 'flashcards_custom_decks_v1';
+
   let allCards = [];
-  let progress = {};   // id -> { interval, ease, reps, due (timestamp), lapses }
+  let customCards = []; // user-imported cards (CSV/JSON), persisted separately from the bundled JSON files
+  // id -> { state, difficulty, stability, due (timestamp), reps, lapses, interval, last_review }
+  // 'interval' and 'due' stay in the same units as before so the UI (dial, isMastered, stats) is unchanged.
+  let progress = {};
   let queue = [];
   let currentIndex = 0;
   let currentFilter = 'all';
@@ -396,6 +535,234 @@
   const deckFilter = document.getElementById('deckFilter');
   const resetBtn = document.getElementById('resetBtn');
 
+  // ---- FSRS-6 engine (embedded, no CDN) -------------------------------
+  // Default weights published by open-spaced-repetition/ts-fsrs. w[20] is the
+  // forgetting-curve decay exponent; FACTOR is derived from it so that, at the
+  // default 90% request retention, interval (days) == stability (days).
+  const FSRS_W = [0.212, 1.2931, 2.3065, 8.2956, 6.4133, 0.8334, 3.0194, 0.001, 1.8722,
+    0.1666, 0.796, 1.4835, 0.0614, 0.2629, 1.6483, 0.6014, 1.8729, 0.5425, 0.0912, 0.0658, 0.1542];
+  const FSRS_DECAY = -FSRS_W[20];
+  const FSRS_FACTOR = Math.exp((1 / FSRS_DECAY) * Math.log(0.9)) - 1;
+  const REQUEST_RETENTION = 0.9;
+  const INTERVAL_MODIFIER = (Math.pow(REQUEST_RETENTION, 1 / FSRS_DECAY) - 1) / FSRS_FACTOR; // == 1 at default retention
+  const S_MIN = 0.01;
+  const S_MAX = 36500;
+  const MAX_INTERVAL_DAYS = 3650;
+  const GRADE = { again: 1, hard: 2, good: 3, easy: 4 };
+
+  function clamp(v, min, max){ return Math.min(Math.max(v, min), max); }
+
+  function initDifficulty(g){ return clamp(FSRS_W[4] - Math.exp((g - 1) * FSRS_W[5]) + 1, 1, 10); }
+  function initStability(g){ return Math.max(FSRS_W[g - 1], 0.1); }
+
+  function nextDifficulty(d, g){
+    const deltaD = -FSRS_W[6] * (g - 3);
+    const damped = d + deltaD * (10 - d) / 9;
+    const reverted = FSRS_W[7] * initDifficulty(4) + (1 - FSRS_W[7]) * damped;
+    return clamp(reverted, 1, 10);
+  }
+
+  function nextRecallStability(d, s, r, g){
+    const hardPenalty = g === GRADE.hard ? FSRS_W[15] : 1;
+    const easyBonus = g === GRADE.easy ? FSRS_W[16] : 1;
+    const val = s * (1 + Math.exp(FSRS_W[8]) * (11 - d) * Math.pow(s, -FSRS_W[9]) *
+      (Math.exp((1 - r) * FSRS_W[10]) - 1) * hardPenalty * easyBonus);
+    return clamp(val, S_MIN, S_MAX);
+  }
+
+  function nextForgetStability(d, s, r){
+    const val = FSRS_W[11] * Math.pow(d, -FSRS_W[12]) * (Math.pow(s + 1, FSRS_W[13]) - 1) *
+      Math.exp((1 - r) * FSRS_W[14]);
+    return clamp(val, S_MIN, S_MAX);
+  }
+
+  function forgettingCurve(elapsedDays, stability){
+    return Math.pow(1 + FSRS_FACTOR * elapsedDays / stability, FSRS_DECAY);
+  }
+
+  function intervalFromStability(stability){
+    return clamp(Math.round(stability * INTERVAL_MODIFIER), 1, MAX_INTERVAL_DAYS);
+  }
+
+  // ---- one-time migration from the old SM-2 shape ----------------------
+  // Old entries look like { interval, ease, reps, due, lapses }. We map them to
+  // FSRS state so nothing is lost: due dates are kept as-is, interval (days) is
+  // used as the initial stability estimate (interval ≈ stability at 90% target
+  // retention, by definition), and the ease factor is linearly remapped onto
+  // FSRS's 1-10 difficulty scale (higher ease => lower difficulty).
+  function isLegacyEntry(s){
+    return !!s && typeof s.ease === 'number' && typeof s.stability !== 'number';
+  }
+
+  function migrateLegacyEntry(old){
+    const DAY = 24 * 60 * 60 * 1000;
+    const reps = old.reps || 0;
+    const interval = old.interval || 0;
+    const ease = typeof old.ease === 'number' ? old.ease : 2.5;
+    const due = old.due || Date.now();
+    if(reps > 0){
+      const difficulty = clamp(10 - (ease - 1.3) * 4.5, 1, 10);
+      const stability = Math.max(interval > 0 ? interval : 0.2, 0.1);
+      return {
+        state: 'review', difficulty, stability, due,
+        reps, lapses: old.lapses || 0, interval,
+        last_review: due - interval * DAY
+      };
+    }
+    return {
+      state: 'new', difficulty: 0, stability: 0, due,
+      reps: 0, lapses: old.lapses || 0, interval: 0, last_review: null
+    };
+  }
+
+  function migrateProgressStore(obj){
+    const out = {};
+    for(const id in obj){
+      out[id] = isLegacyEntry(obj[id]) ? migrateLegacyEntry(obj[id]) : obj[id];
+    }
+    return out;
+  }
+  // -----------------------------------------------------------------------
+
+  // ---- custom deck import (CSV/JSON) -----------------------------------
+  function loadCustomDecks(){
+    try{
+      const raw = localStorage.getItem(CUSTOM_DECKS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    }catch(e){ return []; }
+  }
+  function saveCustomDecks(){
+    try{ localStorage.setItem(CUSTOM_DECKS_KEY, JSON.stringify(customCards)); }
+    catch(e){ console.error('Could not save custom decks', e); }
+  }
+
+  function normalizeCard(raw, defaultType){
+    const type = (raw.type && String(raw.type).trim()) || defaultType || '';
+    const front = String(raw.front || '').trim();
+    const back = String(raw.back || '').trim();
+    const meaning = String(raw.meaning || '').trim();
+    const example = String(raw.example || '').trim();
+    const level = String(raw.level || 'B1').trim();
+    return { type, front, back, meaning, example, level };
+  }
+
+  // Identity used to detect duplicate cards on import: same deck + same front + same back
+  // (meaning/example/level differences don't make it a "different" card).
+  function cardDedupKey(card){
+    return [card.type, card.front, card.back]
+      .map(v => String(v || '').trim().toLowerCase())
+      .join('::');
+  }
+
+  // Minimal RFC4180-style CSV parser: handles quoted fields, escaped quotes ("") and commas/newlines inside quotes.
+  function parseCSV(text){
+    const rows = [];
+    let row = [], field = '', inQuotes = false;
+    for(let i = 0; i < text.length; i++){
+      const c = text[i];
+      if(inQuotes){
+        if(c === '"'){
+          if(text[i + 1] === '"'){ field += '"'; i++; }
+          else inQuotes = false;
+        } else field += c;
+      } else if(c === '"'){
+        inQuotes = true;
+      } else if(c === ','){
+        row.push(field); field = '';
+      } else if(c === '\n'){
+        row.push(field); rows.push(row); row = []; field = '';
+      } else if(c === '\r'){
+        // skip, \n (or end of file) closes the row
+      } else {
+        field += c;
+      }
+    }
+    if(field.length || row.length){ row.push(field); rows.push(row); }
+    return rows.filter(r => !(r.length === 1 && r[0].trim() === ''));
+  }
+
+  function cardsFromCSV(text, defaultType){
+    const rows = parseCSV(text);
+    if(rows.length < 2) throw new Error('The CSV needs a header row and at least one data row.');
+    const header = rows[0].map(h => h.trim().toLowerCase());
+    const col = {
+      front: header.indexOf('front'),
+      back: header.indexOf('back'),
+      meaning: header.indexOf('meaning'),
+      example: header.indexOf('example'),
+      level: header.indexOf('level'),
+      type: header.indexOf('type')
+    };
+    if(col.front === -1 || col.back === -1){
+      throw new Error('The CSV must have at least "front" and "back" columns.');
+    }
+    return rows.slice(1)
+      .filter(r => r.some(v => v.trim() !== ''))
+      .map(r => normalizeCard({
+        type: col.type !== -1 ? r[col.type] : '',
+        front: r[col.front],
+        back: r[col.back],
+        meaning: col.meaning !== -1 ? r[col.meaning] : '',
+        example: col.example !== -1 ? r[col.example] : '',
+        level: col.level !== -1 ? r[col.level] : ''
+      }, defaultType))
+      .filter(c => c.front && c.back);
+  }
+
+  function cardsFromJSON(text, defaultType){
+    const data = JSON.parse(text);
+    const list = Array.isArray(data) ? data : (data && Array.isArray(data.cards) ? data.cards : null);
+    if(!list) throw new Error('The JSON must be an array of cards, or an object with a "cards" array.');
+    return list
+      .map(c => normalizeCard(c, defaultType))
+      .filter(c => c.front && c.back);
+  }
+
+  // ---- auto-discovery of deck JSON files in the same folder -------------
+  // Best-effort only: relies on the server returning a directory listing for
+  // './' (true for e.g. `python -m http.server`). Silently finds nothing on
+  // hosts without directory listing (most static hosts, or file:// pages) —
+  // the app still works via the two bundled files and manual "Import deck".
+  const AUTO_SKIP_PATTERNS = [
+    /^flashcards-progress-.*\.json$/i,   // progress exports/backups, not decks
+    /^flashcards-custom-decks-.*\.json$/i // custom-deck exports (already in localStorage; avoid double-loading)
+  ];
+
+  async function discoverDeckFiles(){
+    try{
+      const res = await fetch('./');
+      if(!res.ok) return [];
+      const contentType = res.headers.get('content-type') || '';
+      if(!contentType.includes('text/html')) return [];
+      const html = await res.text();
+      const hrefs = Array.from(html.matchAll(/href\s*=\s*["']([^"']+\.json)["']/gi))
+        .map(m => decodeURIComponent(m[1]).split('/').pop());
+      const known = new Set([PHRASES_JSON_PATH, WORDS_JSON_PATH]);
+      const names = Array.from(new Set(hrefs)).filter(name =>
+        name && !known.has(name) && !AUTO_SKIP_PATTERNS.some(re => re.test(name))
+      );
+      names.sort();
+      return names;
+    }catch(e){
+      return [];
+    }
+  }
+
+  async function loadAutoDiscoveredDecks(){
+    const files = await discoverDeckFiles();
+    if(files.length === 0) return [];
+    const results = await Promise.allSettled(files.map(name => fetch(name).then(r => r.ok ? r.json() : null)));
+    const cards = [];
+    files.forEach((name, i) => {
+      const res = results[i];
+      if(res.status !== 'fulfilled' || !res.value || !Array.isArray(res.value.cards)) return;
+      const defaultType = name.replace(/\.json$/i, '');
+      res.value.cards.forEach(c => cards.push(normalizeCard(c, defaultType)));
+    });
+    return cards.filter(c => c.front && c.back);
+  }
+  // -----------------------------------------------------------------------
+
   function cardId(card, idx){
     // stable id derived from content, since source JSON has no explicit id
     return card.type + '::' + card.back + '::' + idx;
@@ -404,8 +771,9 @@
   function loadProgress(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
-      progress = raw ? JSON.parse(raw) : {};
+      progress = raw ? migrateProgressStore(JSON.parse(raw)) : {};
     }catch(e){ progress = {}; }
+    saveProgress(); // persist the migration immediately so it only ever runs once
   }
   function saveProgress(){
     try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }
@@ -414,39 +782,52 @@
 
   function getCardState(id){
     if(!progress[id]){
-      progress[id] = { interval: 0, ease: 2.5, reps: 0, due: Date.now(), lapses: 0 };
+      progress[id] = { state: 'new', difficulty: 0, stability: 0, due: Date.now(), reps: 0, lapses: 0, interval: 0, last_review: null };
     }
     return progress[id];
   }
 
-  // SM-2 algorithm
+  // FSRS algorithm
   function gradeCard(id, grade){
     const s = getCardState(id);
     const now = Date.now();
     const DAY = 24 * 60 * 60 * 1000;
+    const g = GRADE[grade];
+    const isNewCard = s.state === 'new';
+
+    let r = 1;
+    if(!isNewCard && s.last_review){
+      const elapsedDays = Math.max(0, (now - s.last_review) / DAY);
+      r = forgettingCurve(elapsedDays, s.stability);
+    }
+
+    let newDifficulty, newStability;
+    if(isNewCard){
+      newDifficulty = initDifficulty(g);
+      newStability = initStability(g);
+    } else {
+      newDifficulty = nextDifficulty(s.difficulty, g);
+      newStability = (grade === 'again')
+        ? nextForgetStability(newDifficulty, s.stability, r)
+        : nextRecallStability(newDifficulty, s.stability, r, g);
+    }
 
     if(grade === 'again'){
       s.reps = 0;
       s.lapses += 1;
-      s.ease = Math.max(1.3, s.ease - 0.2);
+      s.state = isNewCard ? 'learning' : 'relearning';
       s.interval = 0;
-      s.due = now + (10 * 60 * 1000); // 10 minutes
+      s.due = now + (10 * 60 * 1000); // 10 minutes, same quick-retry UX as before
     } else {
       s.reps += 1;
-      if(grade === 'hard'){
-        s.ease = Math.max(1.3, s.ease - 0.15);
-        s.interval = s.interval === 0 ? 1 : Math.max(1, Math.round(s.interval * 1.2));
-      } else if(grade === 'good'){
-        if(s.reps === 1) s.interval = 1;
-        else if(s.reps === 2) s.interval = 3;
-        else s.interval = Math.round(s.interval * s.ease);
-      } else if(grade === 'easy'){
-        s.ease = s.ease + 0.15;
-        s.interval = s.interval === 0 ? 4 : Math.round(s.interval * s.ease * 1.3);
-      }
-      s.interval = Math.max(1, s.interval);
+      s.state = 'review';
+      s.interval = intervalFromStability(newStability);
       s.due = now + (s.interval * DAY);
     }
+    s.difficulty = newDifficulty;
+    s.stability = newStability;
+    s.last_review = now;
+
     progress[id] = s;
     saveProgress();
   }
@@ -671,7 +1052,7 @@
     reader.onload = (evt) => {
       try{
         const payload = JSON.parse(evt.target.result);
-        const incoming = payload.progress || payload; // accept raw progress object too
+        const incoming = migrateProgressStore(payload.progress || payload); // accept raw progress object too, and migrate old SM-2 entries
         const incomingCount = Object.keys(incoming).length;
         const currentCount = Object.keys(progress).length;
         const proceed = confirm(
@@ -692,6 +1073,139 @@
       importInput.value = '';
     };
     reader.readAsText(file);
+  });
+
+  function downloadTextFile(filename, content, mime){
+    const blob = new Blob([content], {type: mime});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  const deckFormatModal = document.getElementById('deckFormatModal');
+  document.getElementById('deckFormatBtn').addEventListener('click', () => {
+    deckFormatModal.classList.remove('hidden');
+  });
+  document.getElementById('closeDeckFormatModal').addEventListener('click', () => {
+    deckFormatModal.classList.add('hidden');
+  });
+  deckFormatModal.addEventListener('click', (e) => {
+    if(e.target === deckFormatModal) deckFormatModal.classList.add('hidden');
+  });
+  document.getElementById('downloadSampleCsv').addEventListener('click', () => {
+    const csv = 'front,back,meaning,example,level,type\n' +
+      '"What does ""break the ice"" mean?",Break the ice,"To ease tension in a social setting","He told a joke to break the ice.",B2,Idiom\n' +
+      'Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French\n';
+    downloadTextFile('deck-sample.csv', csv, 'text/csv');
+  });
+  document.getElementById('downloadSampleJson').addEventListener('click', () => {
+    const json = JSON.stringify({ cards: [
+      { type: 'French', front: 'Bonjour', back: 'bonjour', meaning: 'hello (informal)', example: 'Bonjour, ça va?', level: 'A1' }
+    ] }, null, 2);
+    downloadTextFile('deck-sample.json', json, 'application/json');
+  });
+
+  const importDeckInput = document.getElementById('importDeckInput');
+  document.getElementById('importDeckBtn').addEventListener('click', () => {
+    importDeckInput.click();
+  });
+  importDeckInput.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      try{
+        const text = evt.target.result;
+        const looksJSON = /\.json$/i.test(file.name) ||
+          (!/\.csv$/i.test(file.name) && /^\s*[\[{]/.test(text));
+        let cards = looksJSON ? cardsFromJSON(text, null) : cardsFromCSV(text, null);
+
+        const missingType = cards.some(c => !c.type);
+        if(missingType){
+          const suggested = file.name.replace(/\.(csv|json)$/i, '');
+          const name = prompt('Some cards have no "type" (deck name). What deck name should be used for them?', suggested);
+          if(!name){ importDeckInput.value = ''; return; }
+          cards = cards.map(c => c.type ? c : { ...c, type: name.trim() });
+        }
+
+        if(cards.length === 0){
+          alert('No valid cards found in this file. Each row/entry needs at least "front" and "back".');
+          importDeckInput.value = '';
+          return;
+        }
+
+        // skip cards that already exist in the library (same deck + front + back),
+        // and dedupe within the file itself
+        const existingKeys = new Set(allCards.map(cardDedupKey));
+        const seenKeys = new Set();
+        const newCards = [];
+        let duplicateCount = 0;
+        for(const c of cards){
+          const key = cardDedupKey(c);
+          if(existingKeys.has(key) || seenKeys.has(key)){
+            duplicateCount++;
+            continue;
+          }
+          seenKeys.add(key);
+          newCards.push(c);
+        }
+        cards = newCards;
+
+        if(cards.length === 0){
+          alert(`All ${duplicateCount} card(s) in this file already exist in your library. Nothing new to import.`);
+          importDeckInput.value = '';
+          return;
+        }
+
+        const deckNames = Array.from(new Set(cards.map(c => c.type)));
+        const dupNote = duplicateCount > 0 ? `\n(${duplicateCount} duplicate card(s) already in your library were skipped.)` : '';
+        const proceed = confirm(
+          `Import ${cards.length} card(s) into deck(s): ${deckNames.join(', ')}?${dupNote}\n` +
+          `They'll be added to your library and saved on this device.`
+        );
+        if(!proceed){ importDeckInput.value = ''; return; }
+
+        customCards = [...customCards, ...cards];
+        saveCustomDecks();
+        allCards = [...allCards, ...cards];
+        populateDeckFilter();
+        buildQueue();
+        renderCard();
+        alert(`Imported ${cards.length} card(s) successfully.` + (duplicateCount > 0 ? ` (${duplicateCount} duplicate(s) skipped.)` : ''));
+      } catch(err){
+        alert('Could not import this file: ' + err.message);
+      }
+      importDeckInput.value = '';
+    };
+    reader.readAsText(file);
+  });
+
+  document.getElementById('exportDecksBtn').addEventListener('click', () => {
+    if(customCards.length === 0){
+      alert('No custom decks to export yet. Use "Import deck" to add one first.');
+      return;
+    }
+    const payload = {
+      exportedAt: new Date().toISOString(),
+      app: 'english-flashcards-srs',
+      version: 1,
+      cards: customCards
+    };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const dateStr = new Date().toISOString().slice(0,10);
+    a.href = url;
+    a.download = `flashcards-custom-decks-${dateStr}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   });
 
   resetBtn.addEventListener('click', () => {
@@ -723,7 +1237,9 @@
         wordCards = data.cards || [];
       }
 
-      allCards = [...phraseCards, ...wordCards];
+      const autoCards = await loadAutoDiscoveredDecks();
+      customCards = loadCustomDecks();
+      allCards = [...phraseCards, ...wordCards, ...autoCards, ...customCards];
 
       if(allCards.length === 0){
         throw new Error('Neither JSON file could be loaded');
