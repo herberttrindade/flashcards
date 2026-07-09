@@ -1,5 +1,5 @@
 {
-  "total": 797,
+  "total": 994,
   "cards": [
     {
       "type": "Idiom",
@@ -6376,6 +6376,1582 @@
       "meaning": "To produce a strong emotional response.",
       "example": "Her story struck a chord with many readers.",
       "level": "C2"
+    },
+    {
+      "type": "Idiom",
+      "front": "It's getting late — I'm going to hit the hay.",
+      "back": "Hit the hay",
+      "meaning": "To go to bed.",
+      "example": "He hits the hay early on weeknights.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "I'm feeling a bit under the weather today.",
+      "back": "Feel under the weather",
+      "meaning": "To feel slightly ill.",
+      "example": "She stayed home because she felt under the weather.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Don't worry, we're all in the same boat with this deadline.",
+      "back": "In the same boat",
+      "meaning": "In the same difficult situation as someone else.",
+      "example": "Everyone in the class is in the same boat with the new material.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "She's been on cloud nine since she got the job offer.",
+      "back": "On cloud nine",
+      "meaning": "Extremely happy.",
+      "example": "He was on cloud nine after the wedding.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "It took him months to get over the breakup.",
+      "back": "Get over something",
+      "meaning": "To recover from something difficult or unpleasant.",
+      "example": "She finally got over her fear of flying.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "I need to hit the books before the exam.",
+      "back": "Hit the books",
+      "meaning": "To study hard.",
+      "example": "He hit the books all weekend.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Everyone pitched in to clean up after the party.",
+      "back": "Pitch in",
+      "meaning": "To help with a task, often by contributing effort or money.",
+      "example": "Could you pitch in with the moving next weekend?",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Can you keep an eye on my bag for a minute?",
+      "back": "Keep an eye on",
+      "meaning": "To watch or take care of something or someone.",
+      "example": "She kept an eye on the kids while they swam.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Don't worry, the test was a piece of cake.",
+      "back": "A piece of cake",
+      "meaning": "Something very easy to do.",
+      "example": "Fixing the bug was a piece of cake for her.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "A nice dinner out won't break the bank.",
+      "back": "Break the bank",
+      "meaning": "To cost too much money.",
+      "example": "The renovation was expensive, but it didn't break the bank.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "We had to pay for the repairs out of pocket.",
+      "back": "Out of pocket",
+      "meaning": "Paying for something yourself, without reimbursement.",
+      "example": "The trip cost him a lot out of pocket.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The company has been in the red for two quarters.",
+      "back": "In the red",
+      "meaning": "In debt; losing money.",
+      "example": "Their finances went into the red after the move.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The business finally moved into the black this year.",
+      "back": "In the black",
+      "meaning": "Making a profit; not in debt.",
+      "example": "They've kept the budget in the black all year.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "She may seem tough, but she has a heart of gold.",
+      "back": "Heart of gold",
+      "meaning": "A very kind and generous nature.",
+      "example": "He has a heart of gold and always helps his neighbors.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Just sit tight while we sort out the paperwork.",
+      "back": "Sit tight",
+      "meaning": "To wait patiently without doing anything.",
+      "example": "We'll have to sit tight until the storm passes.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Both parents work to bring home the bacon.",
+      "back": "Bring home the bacon",
+      "meaning": "To earn money to support your family.",
+      "example": "He's proud to bring home the bacon for his family.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Opera really isn't my cup of tea.",
+      "back": "Not one's cup of tea",
+      "meaning": "Not something you like or enjoy.",
+      "example": "Horror movies are not her cup of tea.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Tourism is the bread and butter of this town's economy.",
+      "back": "Bread and butter",
+      "meaning": "The main source of income or the most important part of something.",
+      "example": "Customer service is our bread and butter.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "She has a sweet tooth and always orders dessert.",
+      "back": "Have a sweet tooth",
+      "meaning": "To like sweet foods a lot.",
+      "example": "He has a real sweet tooth for chocolate.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The bonus was the icing on the cake after a great year.",
+      "back": "The icing on the cake",
+      "meaning": "An extra good thing added to an already good situation.",
+      "example": "Winning the award was the icing on the cake.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "The new phone is selling like hotcakes.",
+      "back": "Sell like hotcakes",
+      "meaning": "To sell very quickly and in large numbers.",
+      "example": "Tickets for the concert sold like hotcakes.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "They discussed every topic under the sun.",
+      "back": "Under the sun",
+      "meaning": "Anything at all; everything imaginable.",
+      "example": "He's tried every diet under the sun.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "Losing that job led to a better one — every cloud has a silver lining.",
+      "back": "Every cloud has a silver lining",
+      "meaning": "Every difficult situation has some positive aspect.",
+      "example": "She reminded him that every cloud has a silver lining.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's easygoing and likes to go with the flow.",
+      "back": "Go with the flow",
+      "meaning": "To relax and accept things as they happen.",
+      "example": "Just go with the flow — the schedule might change.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "You can't just bury your head in the sand about the debt.",
+      "back": "Bury your head in the sand",
+      "meaning": "To ignore a problem, hoping it will go away.",
+      "example": "He buried his head in the sand instead of dealing with it.",
+      "level": "B1"
+    },
+    {
+      "type": "Idiom",
+      "front": "He jokes that he's over the hill now that he's turned forty.",
+      "back": "Over the hill",
+      "meaning": "Considered old or past one's prime.",
+      "example": "She doesn't feel over the hill at all.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "They got in trouble for cutting corners on safety inspections.",
+      "back": "Cutting corners",
+      "meaning": "Doing something in the easiest or cheapest way, sacrificing quality.",
+      "example": "The report was rushed, and it showed — they were cutting corners.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The company footed the bill for the conference.",
+      "back": "Foot the bill",
+      "meaning": "To pay for something, especially something expensive.",
+      "example": "Who's going to foot the bill for the repairs?",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "That product line has become the company's cash cow.",
+      "back": "Cash cow",
+      "meaning": "A reliable source of income or profit.",
+      "example": "The franchise is a real cash cow for the studio.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "They've been pinching pennies since the layoff.",
+      "back": "Pinch pennies",
+      "meaning": "To be very careful with money; to save every penny.",
+      "example": "We had to pinch pennies during college.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The donation was generous, but it's a drop in the bucket for the whole project.",
+      "back": "A drop in the bucket",
+      "meaning": "A very small amount compared to what is needed.",
+      "example": "That saving is a drop in the bucket compared to the total cost.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Ever since the company went public, he's been rolling in dough.",
+      "back": "Rolling in dough",
+      "meaning": "Having a lot of money.",
+      "example": "They're not exactly rolling in dough, but they're comfortable.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Buying that broken car was just throwing money down the drain.",
+      "back": "Throw money down the drain",
+      "meaning": "To waste money.",
+      "example": "Skipping maintenance is throwing money down the drain in the long run.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She looked like a million bucks at the gala.",
+      "back": "Look like a million bucks",
+      "meaning": "To look extremely good or well-dressed.",
+      "example": "You look like a million bucks in that suit.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He was born with a silver spoon in his mouth and never had to work.",
+      "back": "Born with a silver spoon in one's mouth",
+      "meaning": "Born into a wealthy family.",
+      "example": "She wasn't born with a silver spoon in her mouth — she earned everything.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The founder went from rags to riches in less than a decade.",
+      "back": "Go from rags to riches",
+      "meaning": "To become wealthy after starting out very poor.",
+      "example": "It's a classic rags-to-riches story.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The new startup is giving the industry leader a run for its money.",
+      "back": "Give someone a run for their money",
+      "meaning": "To compete strongly with someone.",
+      "example": "She gave the champion a run for her money in the final.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The event barely broke even this year.",
+      "back": "Break even",
+      "meaning": "To make neither a profit nor a loss.",
+      "example": "It took two years for the business to break even.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "They decided to go Dutch on dinner.",
+      "back": "Go dutch",
+      "meaning": "To split the cost of something equally.",
+      "example": "We usually go Dutch when we eat out together.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He had to shell out money for a new transmission.",
+      "back": "Shell out money",
+      "meaning": "To pay, often reluctantly, for something expensive.",
+      "example": "Fans shelled out money for the reunion tour tickets.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The official was accused of receiving kickbacks from contractors.",
+      "back": "Receive a kickback",
+      "meaning": "To receive an illegal or unethical payment for a favor.",
+      "example": "He denied receiving any kickback from the deal.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The family was living hand to mouth after the factory closed.",
+      "back": "Living hand to mouth",
+      "meaning": "Having barely enough money to survive, with nothing left over.",
+      "example": "Many freelancers live hand to mouth between projects.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He kept his employees under his thumb.",
+      "back": "Under one's thumb",
+      "meaning": "Completely controlled by someone.",
+      "example": "She refused to be under her partner's thumb.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He really put his foot in his mouth at dinner.",
+      "back": "Put one's foot in one's mouth",
+      "meaning": "To say something embarrassing or tactless.",
+      "example": "She put her foot in her mouth by asking about the layoffs.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "You don't have to twist my arm — I'd love to come.",
+      "back": "Twist someone's arm",
+      "meaning": "To pressure someone into doing something.",
+      "example": "He twisted her arm until she agreed to help.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He stabbed his business partner in the back.",
+      "back": "Stab someone in the back",
+      "meaning": "To betray someone who trusted you.",
+      "example": "She felt stabbed in the back when her idea was stolen.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's worried he's losing his touch as a negotiator.",
+      "back": "Lose your touch",
+      "meaning": "To lose a skill or ability you once had.",
+      "example": "She hasn't lost her touch on the piano at all.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's always got his head in the clouds during meetings.",
+      "back": "Head in the clouds",
+      "meaning": "Not paying attention to reality; daydreaming.",
+      "example": "Stop having your head in the clouds and focus.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The old car finally kicked the bucket.",
+      "back": "Kick the bucket",
+      "meaning": "To die (informal).",
+      "example": "He joked about what would happen when he kicked the bucket.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She stayed cool as a cucumber during the interview.",
+      "back": "Cool as a cucumber",
+      "meaning": "Very calm, especially under pressure.",
+      "example": "He was cool as a cucumber even after the mistake was found.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's turned into a real couch potato this winter.",
+      "back": "A couch potato",
+      "meaning": "A lazy person who watches a lot of television.",
+      "example": "Don't be a couch potato all weekend — get outside.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Comparing the two salaries is like comparing apples and oranges.",
+      "back": "Compare apples and oranges",
+      "meaning": "To compare two things that are too different to compare fairly.",
+      "example": "You're comparing apples and oranges with those two products.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She eats like a bird and never finishes a plate.",
+      "back": "Eat like a bird",
+      "meaning": "To eat very little.",
+      "example": "He's been eating like a bird since he got sick.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Teenagers often eat like a horse.",
+      "back": "Eat like a horse",
+      "meaning": "To eat a large amount.",
+      "example": "He eats like a horse after a long run.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She quit smoking cold turkey.",
+      "back": "Go cold turkey",
+      "meaning": "To stop a habit suddenly and completely.",
+      "example": "He went cold turkey on sugar last month.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He tried to butter up his boss before asking for a raise.",
+      "back": "Butter someone up",
+      "meaning": "To flatter someone to get something from them.",
+      "example": "She buttered up the client before the negotiation.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She's a smart cookie — she'll figure it out.",
+      "back": "A smart cookie",
+      "meaning": "A very intelligent person.",
+      "example": "He's a smart cookie when it comes to numbers.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The train was packed like sardines during rush hour.",
+      "back": "Packed like sardines",
+      "meaning": "Crowded very closely together.",
+      "example": "We were packed like sardines at the concert.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "One bad apple caused problems for the whole team.",
+      "back": "A bad apple",
+      "meaning": "A person who has a bad influence on others in a group.",
+      "example": "He was the bad apple in an otherwise great department.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "They bought a lemon and it broke down within a month.",
+      "back": "Buy a lemon",
+      "meaning": "To buy a faulty product, especially a car.",
+      "example": "Be careful with used cars — you might buy a lemon.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "This case has been a hard nut to crack for detectives.",
+      "back": "A hard nut to crack",
+      "meaning": "A difficult problem or person to deal with.",
+      "example": "He's a hard nut to crack in negotiations.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The kids were full of beans after the party.",
+      "back": "Full of beans",
+      "meaning": "Full of energy and enthusiasm.",
+      "example": "She's always full of beans in the morning.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Changing jobs turned out to be out of the frying pan into the fire.",
+      "back": "Out of the frying pan into the fire",
+      "meaning": "Moving from a bad situation to an even worse one.",
+      "example": "Leaving one problem for a bigger one is like jumping out of the frying pan into the fire.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "You could tell a storm was brewing between the two partners.",
+      "back": "A storm is brewing",
+      "meaning": "Trouble is about to happen.",
+      "example": "A storm was brewing over the new policy.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The office felt unusually quiet — the calm before the storm.",
+      "back": "Calm before the storm",
+      "meaning": "A quiet period before trouble begins.",
+      "example": "This week has been the calm before the storm ahead of the audit.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The company weathered the storm of the recession.",
+      "back": "Weather a storm",
+      "meaning": "To survive a difficult period.",
+      "example": "They weathered the storm together as a family.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "First the car broke, then the roof leaked — when it rains, it pours.",
+      "back": "When it rains, it pours",
+      "meaning": "Several problems tend to happen at the same time.",
+      "example": "She lost her job and got sick the same week; when it rains, it pours.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He's been chasing rainbows with that business idea for years.",
+      "back": "Chasing rainbows",
+      "meaning": "Pursuing something impossible or unrealistic.",
+      "example": "She warned him he was just chasing rainbows.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "I'm completely snowed under this week.",
+      "back": "Snowed under",
+      "meaning": "Overwhelmed with work.",
+      "example": "She's been snowed under with paperwork since the merger.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The CEO found himself in the eye of the storm after the scandal.",
+      "back": "In the eye of the storm",
+      "meaning": "At the center of a difficult or controversial situation.",
+      "example": "The small town was in the eye of the storm during the trial.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He got into deep water by lying to investors.",
+      "back": "Get into deep water",
+      "meaning": "To get into a difficult or dangerous situation.",
+      "example": "She realized she was getting into deep water financially.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The mediator poured oil on troubled waters between the two sides.",
+      "back": "Pour oil on troubled waters",
+      "meaning": "To try to calm a difficult or tense situation.",
+      "example": "She tried to pour oil on troubled waters after the argument.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He felt completely lost at sea in his first week on the job.",
+      "back": "Lost at sea",
+      "meaning": "Confused and without direction.",
+      "example": "Without a mentor, she felt lost at sea.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The company has been sailing close to the wind with its tax reporting.",
+      "back": "Sail close to the wind",
+      "meaning": "To take a risk, especially one close to being illegal or improper.",
+      "example": "He sailed close to the wind with that joke in the meeting.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The proposal is gaining ground among lawmakers.",
+      "back": "Gain ground",
+      "meaning": "To make progress or become more accepted.",
+      "example": "The startup is gaining ground on its bigger rivals.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She's been walking on air since the engagement.",
+      "back": "Walking on air",
+      "meaning": "Feeling extremely happy.",
+      "example": "He was walking on air after the acceptance letter arrived.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "We first met many moons ago, back in university.",
+      "back": "Many moons ago",
+      "meaning": "A long time ago.",
+      "example": "That trend was popular many moons ago.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "His retirement plan is just a castle in the sky at this rate.",
+      "back": "Castle in the sky",
+      "meaning": "An unrealistic hope or plan.",
+      "example": "Don't build castles in the sky without a solid plan.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Her grandmother was the salt of the earth.",
+      "back": "Salt of the earth",
+      "meaning": "A very honest, reliable, and good person.",
+      "example": "He's salt of the earth — always willing to help.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Let's let the dust settle before deciding anything.",
+      "back": "Let the dust settle",
+      "meaning": "To wait until a situation becomes calmer before acting.",
+      "example": "They waited for the dust to settle after the reorganization.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "His explanation was clear as mud.",
+      "back": "Clear as mud",
+      "meaning": "Not clear at all; confusing.",
+      "example": "The instructions were clear as mud.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "His hands were as cold as stone after the walk.",
+      "back": "As cold as stone",
+      "meaning": "Very cold, or emotionally unfeeling.",
+      "example": "Her reply was as cold as stone.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She was between a rock and a hard place with the two job offers.",
+      "back": "Between a rock and a hard place",
+      "meaning": "Facing two equally difficult choices.",
+      "example": "The manager was between a rock and a hard place over the budget cuts.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "The manager nipped the conflict in the bud.",
+      "back": "Nip something in the bud",
+      "meaning": "To stop a problem early, before it develops.",
+      "example": "They nipped the rumor in the bud before it spread.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "She held out an olive branch after their disagreement.",
+      "back": "Hold out an olive branch",
+      "meaning": "To offer to make peace.",
+      "example": "The company held out an olive branch to its critics.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He was so caught up in the numbers he couldn't see the forest for the trees.",
+      "back": "Can't see the forest for the trees",
+      "meaning": "To focus too much on details and miss the big picture.",
+      "example": "The committee couldn't see the forest for the trees during the review.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "He keeps changing jobs, thinking the grass is greener on the other side.",
+      "back": "The grass is always greener on the other side",
+      "meaning": "Other situations always seem better than your own.",
+      "example": "She reminded herself that the grass isn't always greener on the other side.",
+      "level": "B2"
+    },
+    {
+      "type": "Idiom",
+      "front": "Years of hard work finally bore fruit.",
+      "back": "Bear fruit",
+      "meaning": "To produce good results.",
+      "example": "The new strategy is starting to bear fruit.",
+      "level": "B2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "I called around to find a good price on the repair.",
+      "back": "Call around",
+      "meaning": "To telephone several people or places.",
+      "example": "She called around to see who was free this weekend.",
+      "level": "A2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Take a breath and calm down.",
+      "back": "Calm down",
+      "meaning": "To become less upset or angry.",
+      "example": "It took a while for him to calm down after the argument.",
+      "level": "A2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She tried to cheer up her friend after the bad news.",
+      "back": "Cheer up",
+      "meaning": "To become happier, or to make someone happier.",
+      "example": "Cheer up, things will get better!",
+      "level": "A2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "We're dressing up for the party on Saturday.",
+      "back": "Dress up",
+      "meaning": "To wear formal or special clothes.",
+      "example": "She loves dressing up for special occasions.",
+      "level": "A2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Can you fill up the tank before we leave?",
+      "back": "Fill up",
+      "meaning": "To make something completely full.",
+      "example": "The stadium filled up quickly before kickoff.",
+      "level": "A2"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Don't let money come between you and your friends.",
+      "back": "Come between",
+      "meaning": "To cause a problem between two people or things.",
+      "example": "Work started to come between them and their family time.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The company came out of the crisis stronger than before.",
+      "back": "Come out of",
+      "meaning": "To emerge from a situation or state.",
+      "example": "He came out of the meeting looking relieved.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The city is cracking down on illegal parking.",
+      "back": "Crack down on",
+      "meaning": "To take strict action against something.",
+      "example": "Authorities cracked down on the counterfeit market.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Let's dive into the details of the plan.",
+      "back": "Dive into",
+      "meaning": "To start doing something with enthusiasm.",
+      "example": "She dove into her new job right away.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She gets along with everyone on the team.",
+      "back": "Get along with",
+      "meaning": "To have a friendly relationship with someone.",
+      "example": "Do you get along with your new roommate?",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "It's easy to get around the city by bike.",
+      "back": "Get around",
+      "meaning": "To travel to different places, or to avoid a problem.",
+      "example": "They found a way to get around the restriction.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "I never got around to calling him back.",
+      "back": "Get around to",
+      "meaning": "To finally find time to do something.",
+      "example": "She finally got around to organizing her files.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "What are you trying to get at?",
+      "back": "Get at",
+      "meaning": "To imply or suggest something.",
+      "example": "I see what you're getting at.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "What time will you get back tonight?",
+      "back": "Get back",
+      "meaning": "To return.",
+      "example": "He got back from his trip yesterday.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She wanted to get back at him for the comment.",
+      "back": "Get back at",
+      "meaning": "To take revenge on someone.",
+      "example": "He got back at his rival by outperforming him.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Get down before the ball hits you!",
+      "back": "Get down",
+      "meaning": "To lower yourself, or to become sad.",
+      "example": "Don't let the news get you down.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She wanted to get in on the new project.",
+      "back": "Get in on",
+      "meaning": "To become involved in something.",
+      "example": "He got in on the deal early.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She got into painting during the pandemic.",
+      "back": "Get into",
+      "meaning": "To become involved in an activity, or to enter something.",
+      "example": "He got into a good university.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "What time do you get to work?",
+      "back": "Get to",
+      "meaning": "To arrive somewhere, or to have the chance to do something.",
+      "example": "I finally got to try the new restaurant.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The plan goes against company policy.",
+      "back": "Go against",
+      "meaning": "To oppose or conflict with something.",
+      "example": "She went against her family's wishes.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "It's time to let go of the past.",
+      "back": "Let go of",
+      "meaning": "To release something, physically or emotionally.",
+      "example": "He finally let go of his anger.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "She's always looked up to her older sister.",
+      "back": "Look up to",
+      "meaning": "To admire and respect someone.",
+      "example": "Young players look up to him as a role model.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "I'll see to it that the order arrives on time.",
+      "back": "See to",
+      "meaning": "To make sure something is done.",
+      "example": "She saw to all the details of the event.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Please shut off the lights when you leave.",
+      "back": "Shut off",
+      "meaning": "To stop the flow or supply of something.",
+      "example": "They shut off the water to fix the pipe.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "Let me top off your coffee.",
+      "back": "Top off",
+      "meaning": "To fill something the rest of the way, or to complete something.",
+      "example": "They topped off the evening with dessert.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "The waiter waited on us promptly.",
+      "back": "Wait on",
+      "meaning": "To serve someone, especially in a restaurant.",
+      "example": "She waited on tables during college.",
+      "level": "B1"
+    },
+    {
+      "type": "Phrasal Verb",
+      "front": "We waited out the storm at a friend's house.",
+      "back": "Wait out",
+      "meaning": "To wait until something unpleasant ends.",
+      "example": "They decided to wait out the traffic before leaving.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We're having a party this Saturday.",
+      "back": "Have a party",
+      "meaning": "To host or attend a social gathering.",
+      "example": "They had a party to celebrate the promotion.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "I caught a cold from my coworker.",
+      "back": "Catch a cold",
+      "meaning": "To become sick with a cold.",
+      "example": "Dress warmly so you don't catch a cold.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "We had a long conversation about the future.",
+      "back": "Have a conversation",
+      "meaning": "To talk with someone.",
+      "example": "She wants to have a conversation with her manager.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "My father always gives good advice.",
+      "back": "Give advice",
+      "meaning": "To tell someone what you think they should do.",
+      "example": "She gave advice to the new employees.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "He takes a nap every afternoon.",
+      "back": "Take a nap",
+      "meaning": "To sleep for a short time during the day.",
+      "example": "I need to take a nap before the meeting.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "We're going shopping for groceries later.",
+      "back": "Go shopping",
+      "meaning": "To visit stores to buy things.",
+      "example": "She loves going shopping on weekends.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "We clean the house every Saturday.",
+      "back": "Clean the house",
+      "meaning": "To tidy and clean your home.",
+      "example": "He cleaned the house before his guests arrived.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "She didn't pick up the phone.",
+      "back": "Pick up the phone",
+      "meaning": "To answer a phone call.",
+      "example": "Please pick up the phone if it rings.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "He always makes the bed before leaving for work.",
+      "back": "Make the bed",
+      "meaning": "To arrange the sheets and covers neatly.",
+      "example": "Did you make the bed this morning?",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "Let's take a walk after dinner.",
+      "back": "Take a walk",
+      "meaning": "To go for a walk.",
+      "example": "She takes a walk every morning.",
+      "level": "A2"
+    },
+    {
+      "type": "Collocation",
+      "front": "She gave a presentation to the whole department.",
+      "back": "Give a presentation",
+      "meaning": "To present information formally to a group.",
+      "example": "He's nervous about giving the presentation tomorrow.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He does his homework right after school.",
+      "back": "Do homework",
+      "meaning": "To complete school assignments.",
+      "example": "Have you done your homework yet?",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Students had to write an essay about their goals.",
+      "back": "Write an essay",
+      "meaning": "To compose a formal piece of writing on a topic.",
+      "example": "She wrote an essay for the scholarship application.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He wrote a report on the quarterly results.",
+      "back": "Write a report",
+      "meaning": "To prepare a formal document about a topic.",
+      "example": "She's writing a report for the board meeting.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He gave a talk on climate change at the conference.",
+      "back": "Give a talk",
+      "meaning": "To speak formally to an audience.",
+      "example": "She's giving a talk to new employees next week.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We have a meeting scheduled for 10 a.m.",
+      "back": "Have a meeting",
+      "meaning": "To hold a formal discussion with others.",
+      "example": "They had a meeting to discuss the budget.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's been working overtime to finish the project.",
+      "back": "Work overtime",
+      "meaning": "To work extra hours beyond the normal schedule.",
+      "example": "He worked overtime all week before the launch.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She attended a conference on renewable energy.",
+      "back": "Attend a conference",
+      "meaning": "To go to a formal meeting or event on a topic.",
+      "example": "He's attending a conference in another city next month.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He completed the task ahead of schedule.",
+      "back": "Complete a task",
+      "meaning": "To finish a piece of work.",
+      "example": "Make sure to complete each task before moving on.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They had an argument about the schedule.",
+      "back": "Have an argument",
+      "meaning": "To disagree strongly with someone, often verbally.",
+      "example": "She doesn't like having arguments in front of others.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They got married last summer.",
+      "back": "Get married",
+      "meaning": "To become someone's spouse.",
+      "example": "She's getting married next year.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He broke up with his girlfriend last month.",
+      "back": "Break up with",
+      "meaning": "To end a romantic relationship with someone.",
+      "example": "She decided to break up with him after the trip.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "It took time to get to know my new colleagues.",
+      "back": "Get to know",
+      "meaning": "To become familiar with someone or something.",
+      "example": "They spent the evening getting to know each other.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They fell in love in college.",
+      "back": "Fall in love",
+      "meaning": "To begin to love someone romantically.",
+      "example": "She fell in love with the city the moment she arrived.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He likes to spend time with his family on weekends.",
+      "back": "Spend time with",
+      "meaning": "To pass time in the company of someone.",
+      "example": "She spent time with old friends during the trip.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They went on a date last Friday.",
+      "back": "Go on a date",
+      "meaning": "To go out socially with someone romantically.",
+      "example": "He's nervous about going on a first date.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She loves meeting someone new at events.",
+      "back": "Meet someone new",
+      "meaning": "To be introduced to a person for the first time.",
+      "example": "He met someone new at the conference.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We're going on vacation next month.",
+      "back": "Go on vacation",
+      "meaning": "To take a trip for leisure.",
+      "example": "They go on vacation every summer.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She booked a flight for next Tuesday.",
+      "back": "Book a flight",
+      "meaning": "To reserve a seat on an airplane.",
+      "example": "We need to book a flight before prices go up.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We need to hurry to catch our plane.",
+      "back": "Catch a plane",
+      "meaning": "To board a flight, usually with limited time.",
+      "example": "He almost missed his chance to catch the plane.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They went sightseeing around the old town.",
+      "back": "Go sightseeing",
+      "meaning": "To visit interesting or famous places as a tourist.",
+      "example": "We plan to go sightseeing on our first day there.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She travels abroad for work several times a year.",
+      "back": "Travel abroad",
+      "meaning": "To travel to a foreign country.",
+      "example": "He's never traveled abroad before.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "You'll need to get a passport before the trip.",
+      "back": "Get a passport",
+      "meaning": "To obtain an official travel document.",
+      "example": "She got her passport renewed last month.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We rented a car for the road trip.",
+      "back": "Rent a car",
+      "meaning": "To pay to use a car temporarily.",
+      "example": "They rented a car to explore the coast.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She does exercise every morning.",
+      "back": "Do exercise",
+      "meaning": "To physically train your body.",
+      "example": "It's important to do exercise regularly.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He goes to the gym three times a week.",
+      "back": "Go to the gym",
+      "meaning": "To visit a place to work out.",
+      "example": "She's been going to the gym since January.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He forgot to take his medicine this morning.",
+      "back": "Take medicine",
+      "meaning": "To consume medicine for an illness.",
+      "example": "Make sure to take your medicine on time.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's been trying to eat healthy lately.",
+      "back": "Eat healthy",
+      "meaning": "To consume nutritious food.",
+      "example": "It's not always easy to eat healthy while traveling.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He's getting better after the surgery.",
+      "back": "Get better",
+      "meaning": "To improve, especially in health.",
+      "example": "Things will get better with time.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She felt sick after the long flight.",
+      "back": "Feel sick",
+      "meaning": "To feel unwell.",
+      "example": "He stayed home because he felt sick.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "I have a headache from staring at the screen all day.",
+      "back": "Have a headache",
+      "meaning": "To experience pain in the head.",
+      "example": "She had a headache after the loud concert.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He runs every day to stay in shape.",
+      "back": "Stay in shape",
+      "meaning": "To maintain physical fitness.",
+      "example": "It's important to stay in shape as you get older.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's been trying to lose weight before the wedding.",
+      "back": "Lose weight",
+      "meaning": "To reduce your body weight.",
+      "example": "He lost weight after changing his diet.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's been in a good mood all week.",
+      "back": "Be in a good mood",
+      "meaning": "To feel happy or positive.",
+      "example": "He's usually in a good mood in the mornings.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He always makes her feel special on her birthday.",
+      "back": "Make someone feel special",
+      "meaning": "To make someone feel valued or appreciated.",
+      "example": "The team made the new hire feel special on his first day.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She felt nervous before the interview.",
+      "back": "Feel nervous",
+      "meaning": "To feel anxious or worried.",
+      "example": "He always feels nervous before speaking in public.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He got upset when he heard the news.",
+      "back": "Get upset",
+      "meaning": "To become annoyed or unhappy.",
+      "example": "Try not to get upset over small things.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "It's healthy to express your feelings.",
+      "back": "Express feelings",
+      "meaning": "To communicate your emotions.",
+      "example": "He finds it hard to express his feelings.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's excited about the new job.",
+      "back": "Be excited about",
+      "meaning": "To feel enthusiastic about something.",
+      "example": "They're excited about the upcoming trip.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He's scared of heights.",
+      "back": "Be scared of",
+      "meaning": "To be afraid of something.",
+      "example": "She used to be scared of the dark.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They signed a contract last week.",
+      "back": "Sign a contract",
+      "meaning": "To formally agree to a contract by signing it.",
+      "example": "She's about to sign a contract with a new client.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The manager gave feedback after the presentation.",
+      "back": "Give feedback",
+      "meaning": "To share your opinion on someone's work or performance.",
+      "example": "Please give feedback on the draft.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They spent weeks negotiating the contract.",
+      "back": "Negotiate a contract",
+      "meaning": "To discuss and agree on the terms of a contract.",
+      "example": "She's skilled at negotiating contracts.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's been running her own business for five years.",
+      "back": "Run a business",
+      "meaning": "To manage and operate a company.",
+      "example": "He runs a small business from home.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "The store is offering a discount this weekend.",
+      "back": "Offer a discount",
+      "meaning": "To reduce the price of something.",
+      "example": "They offered a discount for early payment.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "It took months to close the deal.",
+      "back": "Close a deal",
+      "meaning": "To finalize a business agreement.",
+      "example": "She closed the deal just before the deadline.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He spends too much money on gadgets.",
+      "back": "Spend money",
+      "meaning": "To use money to buy things.",
+      "example": "They spent money on renovating the kitchen.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She saves money every month for retirement.",
+      "back": "Save money",
+      "meaning": "To keep money instead of spending it.",
+      "example": "They're saving money for a house.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "More people are shopping online than ever.",
+      "back": "Shop online",
+      "meaning": "To purchase items over the internet.",
+      "example": "She prefers to shop online for clothes.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Always check the price before buying online.",
+      "back": "Check the price",
+      "meaning": "To find out how much something costs.",
+      "example": "He checked the price at several stores.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She prefers to pay in cash.",
+      "back": "Pay in cash",
+      "meaning": "To pay using physical money rather than a card.",
+      "example": "They paid in cash for the furniture.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He earns money by freelancing on weekends.",
+      "back": "Earn money",
+      "meaning": "To receive money for work.",
+      "example": "She earns money through online tutoring.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We went hiking in the mountains last weekend.",
+      "back": "Go hiking",
+      "meaning": "To walk for pleasure in natural areas.",
+      "example": "They go hiking every autumn.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We spent the afternoon enjoying the sunshine.",
+      "back": "Enjoy the sunshine",
+      "meaning": "To take pleasure in sunny weather.",
+      "example": "They sat outside enjoying the sunshine.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He's always wanted to climb a mountain.",
+      "back": "Climb a mountain",
+      "meaning": "To ascend a mountain.",
+      "example": "They climbed a mountain during their trip to Peru.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We're going camping this weekend.",
+      "back": "Go camping",
+      "meaning": "To stay outdoors, usually in a tent.",
+      "example": "They go camping every summer with friends.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They planted a tree to mark the anniversary.",
+      "back": "Plant a tree",
+      "meaning": "To put a tree into the ground to grow.",
+      "example": "She planted a tree in her backyard.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We watched the sunset from the beach.",
+      "back": "Watch the sunset",
+      "meaning": "To observe the sun going down.",
+      "example": "They love watching the sunset together.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Turning off lights helps save energy.",
+      "back": "Save energy",
+      "meaning": "To use less power or fuel.",
+      "example": "The company is trying to save energy across its offices.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's taking time off to recover.",
+      "back": "Take time off",
+      "meaning": "To not work for a period of time.",
+      "example": "He took time off after the project ended.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Please try to arrive on time for the meeting.",
+      "back": "Arrive on time",
+      "meaning": "To reach a place at the expected time.",
+      "example": "The train arrived on time despite the storm.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They missed the deadline by two days.",
+      "back": "Miss the deadline",
+      "meaning": "To fail to complete something by the required time.",
+      "example": "He was worried about missing the deadline.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She cooks a meal for the family every night.",
+      "back": "Cook a meal",
+      "meaning": "To prepare food.",
+      "example": "He cooked a meal for his friends.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We eat out once a week.",
+      "back": "Eat out",
+      "meaning": "To have a meal at a restaurant.",
+      "example": "They decided to eat out instead of cooking.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "We ordered food for the whole office.",
+      "back": "Order food",
+      "meaning": "To request food, especially from a restaurant.",
+      "example": "She ordered food online for dinner.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He had a snack before the meeting.",
+      "back": "Have a snack",
+      "meaning": "To eat a small amount of food between meals.",
+      "example": "She always has a snack in the afternoon.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "They tried a new dish at the restaurant.",
+      "back": "Try a new dish",
+      "meaning": "To eat something you haven't eaten before.",
+      "example": "I love trying new dishes when I travel.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She's learning a language for her trip.",
+      "back": "Learn a language",
+      "meaning": "To study and acquire a new language.",
+      "example": "It takes years to learn a language well.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "He's taking an English course this semester.",
+      "back": "Take an english course",
+      "meaning": "To enroll in a class to study English.",
+      "example": "She took an English course before moving abroad.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She practices speaking every day with a tutor.",
+      "back": "Practice speaking",
+      "meaning": "To work on your spoken language skills.",
+      "example": "He practices speaking English with his coworkers.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "Reading helps improve your vocabulary.",
+      "back": "Improve your vocabulary",
+      "meaning": "To learn more words and expand your vocabulary.",
+      "example": "He's using flashcards to improve his vocabulary.",
+      "level": "B1"
+    },
+    {
+      "type": "Collocation",
+      "front": "She studies grammar every weekend.",
+      "back": "Study grammar",
+      "meaning": "To learn the rules of a language.",
+      "example": "He finds it useful to study grammar with examples.",
+      "level": "B1"
     }
   ]
 }
