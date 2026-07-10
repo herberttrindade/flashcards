@@ -77,9 +77,26 @@
     gap: 10px;
     width:100%;
     max-width: 640px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     flex-wrap: wrap;
   }
+  .help-link{
+    display:block;
+    width:100%;
+    max-width: 640px;
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: 'Inter', sans-serif;
+    font-size: 12.5px;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    text-align: left;
+    padding: 10px 4px 18px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .help-link:hover, .help-link:active{ color: var(--amber-soft); }
   .stat{
     flex:1;
     min-width: 90px;
@@ -442,6 +459,7 @@
 </div>
 
 <div class="stats-row" id="statsRow"></div>
+<button class="help-link" id="cardGuideBtn">How to read a card / your stats ?</button>
 
 <div class="controls">
   <select id="sourceFilter">
@@ -511,6 +529,48 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         <a id="downloadSampleJson">Download sample .json</a>
       </div>
       <button class="modal-close" id="closeDeckFormatModal">Got it</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="cardGuideModal">
+  <div class="modal-box">
+    <h2>How to read a card</h2>
+    <p>A quick guide to every number, tag, and stat you'll see while studying.</p>
+
+    <h3>Stats at the top</h3>
+    <p>
+      <strong>Due now</strong> — cards you've studied before that are ready to review again today.<br>
+      <strong>New</strong> — cards you haven't studied yet (this also includes cards you just got wrong, since they briefly go back to "relearning").<br>
+      <strong>Mastered</strong> — cards you know well, currently scheduled 21+ days out.<br>
+      <strong>Total</strong> — how many cards match your current filters (source / deck / level).
+    </p>
+
+    <h3>Front of the card</h3>
+    <p>
+      <strong>Ring with a number</strong> (top right, e.g. "12d") — how many days until this card comes up again, based on your last answer. Empty ring = brand new. Full ring = well memorized (30+ days).<br>
+      <strong>Small tag</strong> (e.g. "Idiom", "Word") — which deck/category this card belongs to.<br>
+      <strong>Colored badge</strong> (A1–C2) — the difficulty level.<br>
+      <strong>Big text in the middle</strong> — the question. Tap the card to flip it and see the answer.
+    </p>
+
+    <h3>Back of the card</h3>
+    <p>
+      <strong>Highlighted text</strong> — the answer.<br>
+      <strong>Line underneath</strong> — what it means.<br>
+      <strong>Text in quotes</strong> — an example sentence using it.
+    </p>
+
+    <h3>The four grading buttons</h3>
+    <p>
+      <strong>Again</strong> — you didn't remember it; it comes back in about 10 minutes so you can try again.<br>
+      <strong>Hard</strong> — you got it, but it took effort; comes back a bit sooner than usual.<br>
+      <strong>Good</strong> — normal pace; the regular schedule applies.<br>
+      <strong>Easy</strong> — too easy for you; comes back after a much longer gap.
+    </p>
+
+    <div class="modal-actions" style="justify-content:flex-end;">
+      <button class="modal-close" id="closeCardGuideModal">Got it</button>
     </div>
   </div>
 </div>
@@ -1126,6 +1186,17 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   });
   deckFormatModal.addEventListener('click', (e) => {
     if(e.target === deckFormatModal) deckFormatModal.classList.add('hidden');
+  });
+
+  const cardGuideModal = document.getElementById('cardGuideModal');
+  document.getElementById('cardGuideBtn').addEventListener('click', () => {
+    cardGuideModal.classList.remove('hidden');
+  });
+  document.getElementById('closeCardGuideModal').addEventListener('click', () => {
+    cardGuideModal.classList.add('hidden');
+  });
+  cardGuideModal.addEventListener('click', (e) => {
+    if(e.target === cardGuideModal) cardGuideModal.classList.add('hidden');
   });
   document.getElementById('downloadSampleCsv').addEventListener('click', () => {
     const csv = 'front,back,meaning,example,level,type\n' +
