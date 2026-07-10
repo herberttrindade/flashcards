@@ -463,9 +463,10 @@
 
 <div class="controls">
   <select id="sourceFilter">
-    <option value="all">Words + Phrases (mixed)</option>
+    <option value="all">Words + Phrases + Grammar (mixed)</option>
     <option value="phrases">Phrases only (idioms, phrasal verbs, collocations)</option>
     <option value="words">Words only</option>
+    <option value="grammar">Grammar only (tenses & structures)</option>
   </select>
   <select id="deckFilter"></select>
   <select id="levelFilter">
@@ -588,6 +589,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   const STORAGE_KEY = 'flashcards_srs_progress_v1';
   const PHRASES_JSON_PATH = 'english_flashcards.json';
   const WORDS_JSON_PATH = 'english_words.json';
+  const GRAMMAR_JSON_PATH = 'english_grammar_tenses.json';
 
   const CUSTOM_DECKS_KEY = 'flashcards_custom_decks_v1';
 
@@ -813,7 +815,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
       const html = await res.text();
       const hrefs = Array.from(html.matchAll(/href\s*=\s*["']([^"']+\.json)["']/gi))
         .map(m => decodeURIComponent(m[1]).split('/').pop());
-      const known = new Set([PHRASES_JSON_PATH, WORDS_JSON_PATH]);
+      const known = new Set([PHRASES_JSON_PATH, WORDS_JSON_PATH, GRAMMAR_JSON_PATH]);
       const names = Array.from(new Set(hrefs)).filter(name =>
         name && !known.has(name) && !AUTO_SKIP_PATTERNS.some(re => re.test(name))
       );
@@ -923,7 +925,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     return s && s.interval >= 21;
   }
 
-  // 'phrases'/'words' = the two bundled JSON files; 'custom' = imported or auto-discovered decks
+  // 'phrases'/'words'/'grammar' = the bundled JSON files; 'custom' = imported or auto-discovered decks
   function applySourceFilter(pool){
     if(currentSource === 'all') return pool;
     return pool.filter(c => c.source === currentSource);
@@ -1322,13 +1324,15 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   async function init(){
     loadProgress();
     try{
-      const [phrasesRes, wordsRes] = await Promise.allSettled([
+      const [phrasesRes, wordsRes, grammarRes] = await Promise.allSettled([
         fetch(PHRASES_JSON_PATH),
-        fetch(WORDS_JSON_PATH)
+        fetch(WORDS_JSON_PATH),
+        fetch(GRAMMAR_JSON_PATH)
       ]);
 
       let phraseCards = [];
       let wordCards = [];
+      let grammarCards = [];
 
       if(phrasesRes.status === 'fulfilled' && phrasesRes.value.ok){
         const data = await phrasesRes.value.json();
@@ -1338,10 +1342,14 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         const data = await wordsRes.value.json();
         wordCards = (data.cards || []).map(c => ({ ...c, source: 'words' }));
       }
+      if(grammarRes.status === 'fulfilled' && grammarRes.value.ok){
+        const data = await grammarRes.value.json();
+        grammarCards = (data.cards || []).map(c => ({ ...c, source: 'grammar' }));
+      }
 
       const autoCards = await loadAutoDiscoveredDecks();
       customCards = loadCustomDecks();
-      allCards = [...phraseCards, ...wordCards, ...autoCards, ...customCards];
+      allCards = [...phraseCards, ...wordCards, ...grammarCards, ...autoCards, ...customCards];
 
       if(allCards.length === 0){
         throw new Error('Neither JSON file could be loaded');
@@ -1355,7 +1363,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
       stage.innerHTML = `
         <div class="empty-state">
           <h2>Couldn't load the card files</h2>
-          <p>Make sure <strong>${PHRASES_JSON_PATH}</strong> and/or <strong>${WORDS_JSON_PATH}</strong> are in the same folder as this HTML file, then reload the page.</p>
+          <p>Make sure <strong>${PHRASES_JSON_PATH}</strong>, <strong>${WORDS_JSON_PATH}</strong> and/or <strong>${GRAMMAR_JSON_PATH}</strong> are in the same folder as this HTML file, then reload the page.</p>
           <p style="font-size:11px; opacity:0.6;">${err.message}</p>
         </div>`;
     }
