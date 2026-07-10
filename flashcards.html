@@ -500,7 +500,7 @@
 Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
 
     <h3>JSON</h3>
-    <p>Either a bare array of cards, or an object like the bundled deck files (<code>{"cards": [...]}</code>).</p>
+    <p>Either a bare array of cards, or an object like the bundled deck files (<code>{"cards": [...]}</code>). This includes files like the bundled <code>english_grammar_tenses.json</code> — any JSON with a <code>cards</code> array full of front/back objects imports the same way.</p>
     <pre>{
   "cards": [
     {
@@ -513,6 +513,21 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     }
   ]
 }</pre>
+    <p>Grammar-style cards work the same way — <code>type</code>, <code>front</code>, <code>back</code>, <code>meaning</code>, <code>example</code> and <code>level</code> are read exactly as above; any extra fields (like the bundled Grammar deck's <code>tense</code> and <code>context</code>) are simply ignored on import.</p>
+    <pre>{
+  "cards": [
+    {
+      "type": "Grammar",
+      "tense": "Second Conditional",
+      "context": "Coffee shop",
+      "front": "Fill in: If I _____ (own) a café, I _____ (serve) only fair-trade coffee.",
+      "back": "If I owned a café, I would serve only fair-trade coffee.",
+      "meaning": "An unreal, hypothetical present situation uses second conditional.",
+      "example": "If I had more time, I would learn how to make latte art.",
+      "level": "B2"
+    }
+  ]
+}</pre>
 
     <h3>Field reference</h3>
     <p>
@@ -520,7 +535,8 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
       <code>back</code> — required, the answer side.<br>
       <code>meaning</code> / <code>example</code> — optional, shown on the back of the card.<br>
       <code>level</code> — optional, one of A1/A2/B1/B2/C1/C2 (defaults to B1).<br>
-      <code>type</code> — optional, the deck/category name. Rows without it can share one deck name you're asked for at import time. Include a <code>type</code> per row/entry to split one file into several decks at once.
+      <code>type</code> — optional, the deck/category name. Rows without it can share one deck name you're asked for at import time. Include a <code>type</code> per row/entry to split one file into several decks at once.<br>
+      Any other fields (e.g. <code>tense</code>, <code>context</code>) are accepted in the source file but not imported — only the fields above are used.
     </p>
     <p>Cards that already exist (same deck + front + back as one already in your library) are skipped automatically, so re-importing the same file is safe.</p>
 
