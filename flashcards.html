@@ -229,6 +229,17 @@
   .face.back .level-badge.lvl-C1{ color: #e8a48f; }
   .face.back .level-badge.lvl-C2{ color: #d9a8e0; }
 
+  .face .tense-tag{
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 100px;
+    border: 1px solid currentColor;
+  }
+  .face.back .tense-tag{ color: var(--amber-soft); }
+
   .face-content{
     flex:1;
     display:flex;
@@ -1030,6 +1041,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
             <div class="tag-row">
               <span class="type-tag">${card.type}</span>
               <span class="level-badge lvl-${card.level || 'B1'}">${card.level || ''}</span>
+              ${card.tense ? `<span class="tense-tag">${card.tense}</span>` : ''}
             </div>
             <div class="face-content">
               <div class="back-stack">
