@@ -538,13 +538,23 @@
 <div class="modal-overlay hidden" id="signInModal">
   <div class="modal-box">
     <h2>Sign in to sync</h2>
-    <p>Enter your email and we'll send you a magic link. Once signed in, your custom decks and review progress sync to your Supabase account and follow you to other devices.</p>
+    <p>Enter your email and we'll send you a 6-digit code. Once signed in, your custom decks and review progress sync to your Supabase account and follow you to other devices.</p>
     <input type="email" id="signInEmail" placeholder="you@example.com" autocomplete="email"
       style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:14px; margin-top:6px;">
     <p id="signInMessage" style="font-size:12.5px; color:var(--text-dim); min-height: 1.4em;"></p>
     <div class="modal-actions">
       <button class="modal-close" id="closeSignInModal" style="background:transparent; color:var(--text-dim);">Cancel</button>
-      <button class="modal-close" id="sendMagicLinkBtn">Send magic link</button>
+      <button class="modal-close" id="sendMagicLinkBtn">Send code</button>
+    </div>
+
+    <div id="otpCodeSection" class="hidden" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
+      <p style="margin:0 0 6px;">Enter the 6-digit code from the email. If you opened the email's link instead and it said "Not signed in", that's expected on an iPhone home-screen app — use the code here instead.</p>
+      <input type="text" id="signInCode" placeholder="123456" inputmode="numeric" autocomplete="one-time-code" maxlength="6"
+        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:16px; letter-spacing:3px; margin-top:6px;">
+      <div class="modal-actions">
+        <span></span>
+        <button class="modal-close" id="verifyCodeBtn">Verify code</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1543,6 +1553,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const signInModal = document.getElementById('signInModal');
   const signInEmail = document.getElementById('signInEmail');
   const signInMessage = document.getElementById('signInMessage');
+  const otpCodeSection = document.getElementById('otpCodeSection');
+  const signInCode = document.getElementById('signInCode');
 
   function updateAuthUI(){
     if(currentUser){
@@ -1558,6 +1570,8 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
   cloudSignInBtn.addEventListener('click', () => {
     signInMessage.textContent = '';
+    signInCode.value = '';
+    otpCodeSection.classList.add('hidden');
     settingsModal.classList.add('hidden');
     signInModal.classList.remove('hidden');
     signInEmail.focus();
@@ -1576,9 +1590,26 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
       email,
       options: { emailRedirectTo: window.location.href }
     });
-    signInMessage.textContent = error
-      ? `Could not send the link: ${error.message}`
-      : 'Magic link sent — check your email and open it on this device.';
+    if(error){
+      signInMessage.textContent = `Could not send the code: ${error.message}`;
+      return;
+    }
+    signInMessage.textContent = 'Code sent — check your email.';
+    otpCodeSection.classList.remove('hidden');
+    signInCode.focus();
+  });
+  document.getElementById('verifyCodeBtn').addEventListener('click', async () => {
+    const email = signInEmail.value.trim();
+    const token = signInCode.value.trim();
+    if(!token){ signInMessage.textContent = 'Enter the 6-digit code first.'; return; }
+    signInMessage.textContent = 'Verifying…';
+    const { error } = await sb.auth.verifyOtp({ email, token, type: 'email' });
+    if(error){
+      signInMessage.textContent = `Could not verify the code: ${error.message}`;
+      return;
+    }
+    signInMessage.textContent = 'Signed in!';
+    signInModal.classList.add('hidden');
   });
   cloudSignOutBtn.addEventListener('click', async () => {
     await sb.auth.signOut();
