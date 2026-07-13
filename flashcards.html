@@ -122,20 +122,11 @@
   .stat.new .n{ color: var(--sage-soft); }
   .stat.mastered .n{ color: var(--sage); }
 
-  .cloud-bar{
-    width:100%;
-    max-width: 640px;
-    display:flex;
-    align-items:center;
-    justify-content:flex-end;
-    gap: 10px;
-    margin-bottom: 14px;
-    flex-wrap: wrap;
-  }
   .cloud-status{
     font-size: 12px;
     color: var(--text-dim);
-    margin-right: auto;
+    align-self: center;
+    white-space: nowrap;
   }
   .cloud-status.synced{ color: var(--sage-soft); }
 
@@ -487,12 +478,6 @@
   <div class="sub">Each card you grade reshapes when it returns. Progress saves on this device.</div>
 </div>
 
-<div class="cloud-bar" id="cloudBar">
-  <span class="cloud-status" id="cloudStatus">Not signed in — progress stays on this device only.</span>
-  <button class="ghost" id="cloudSignInBtn">Sign in to sync</button>
-  <button class="ghost hidden" id="cloudSignOutBtn">Sign out</button>
-</div>
-
 <div class="stats-row" id="statsRow"></div>
 <button class="help-link" id="cardGuideBtn">How to read a card / your stats ?</button>
 
@@ -513,14 +498,41 @@
     <option value="C1">C1</option>
     <option value="C2">C2</option>
   </select>
-  <button class="ghost" id="importDeckBtn" title="Add a new deck from a CSV or JSON file (columns/fields: front, back, meaning, example, level, type)">Import deck</button>
-  <input type="file" id="importDeckInput" accept=".csv,.json,text/csv,application/json" style="display:none;">
-  <button class="ghost" id="deckFormatBtn" title="See the expected CSV/JSON format for importing a deck">Deck format ?</button>
-  <button class="ghost" id="exportDecksBtn" title="Download your imported custom decks as a JSON file">Export decks</button>
-  <button class="ghost" id="exportBtn" title="Download your progress as a file">Export progress</button>
-  <button class="ghost" id="importBtn" title="Load progress from a file">Import progress</button>
-  <input type="file" id="importInput" accept=".json" style="display:none;">
-  <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
+  <span class="cloud-status" id="cloudStatus">Not signed in</span>
+  <button class="ghost" id="settingsBtn" title="Decks, progress backup and cloud sync">⚙ Settings</button>
+</div>
+
+<div class="modal-overlay hidden" id="settingsModal">
+  <div class="modal-box">
+    <h2>Settings</h2>
+
+    <h3>Cloud sync</h3>
+    <p id="cloudStatusLong">Not signed in — progress stays on this device only.</p>
+    <div class="modal-actions" style="justify-content:flex-start;">
+      <button class="ghost" id="cloudSignInBtn">Sign in to sync</button>
+      <button class="ghost hidden" id="cloudSignOutBtn">Sign out</button>
+    </div>
+
+    <h3>Decks</h3>
+    <div class="modal-actions" style="justify-content:flex-start; flex-wrap:wrap;">
+      <button class="ghost" id="importDeckBtn" title="Add a new deck from a CSV or JSON file (columns/fields: front, back, meaning, example, level, type)">Import deck</button>
+      <input type="file" id="importDeckInput" accept=".csv,.json,text/csv,application/json" style="display:none;">
+      <button class="ghost" id="deckFormatBtn" title="See the expected CSV/JSON format for importing a deck">Deck format ?</button>
+      <button class="ghost" id="exportDecksBtn" title="Download your imported custom decks as a JSON file">Export decks</button>
+    </div>
+
+    <h3>Progress backup</h3>
+    <div class="modal-actions" style="justify-content:flex-start; flex-wrap:wrap;">
+      <button class="ghost" id="exportBtn" title="Download your progress as a file">Export progress</button>
+      <button class="ghost" id="importBtn" title="Load progress from a file">Import progress</button>
+      <input type="file" id="importInput" accept=".json" style="display:none;">
+      <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
+    </div>
+
+    <div class="modal-actions">
+      <button class="modal-close" id="closeSettingsModal">Done</button>
+    </div>
+  </div>
 </div>
 
 <div class="modal-overlay hidden" id="signInModal">
@@ -888,18 +900,21 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
       populateDeckFilter();
       buildQueue();
       renderCard();
-      setCloudStatus(`Synced as ${currentUser.email}`, true);
+      setCloudStatus('Synced', true, `Synced as ${currentUser.email}`);
     }catch(e){
       console.error('Cloud sync failed', e);
-      setCloudStatus('Sync failed — working offline', false);
+      setCloudStatus('Sync failed', false, 'Sync failed — working offline. Your data is still safe in localStorage on this device.');
     }
   }
 
-  function setCloudStatus(text, synced){
+  function setCloudStatus(shortText, synced, longText){
     const el = document.getElementById('cloudStatus');
-    if(!el) return;
-    el.textContent = text;
-    el.classList.toggle('synced', !!synced);
+    if(el){
+      el.textContent = shortText;
+      el.classList.toggle('synced', !!synced);
+    }
+    const longEl = document.getElementById('cloudStatusLong');
+    if(longEl) longEl.textContent = longText || shortText;
   }
   // -----------------------------------------------------------------------
 
@@ -1533,16 +1548,17 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
     if(currentUser){
       cloudSignInBtn.classList.add('hidden');
       cloudSignOutBtn.classList.remove('hidden');
-      setCloudStatus(`Signed in as ${currentUser.email}`, true);
+      setCloudStatus('Signed in', true, `Signed in as ${currentUser.email}`);
     } else {
       cloudSignInBtn.classList.remove('hidden');
       cloudSignOutBtn.classList.add('hidden');
-      setCloudStatus('Not signed in — progress stays on this device only.', false);
+      setCloudStatus('Not signed in', false, 'Not signed in — progress stays on this device only.');
     }
   }
 
   cloudSignInBtn.addEventListener('click', () => {
     signInMessage.textContent = '';
+    settingsModal.classList.add('hidden');
     signInModal.classList.remove('hidden');
     signInEmail.focus();
   });
@@ -1566,6 +1582,17 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   });
   cloudSignOutBtn.addEventListener('click', async () => {
     await sb.auth.signOut();
+  });
+
+  const settingsModal = document.getElementById('settingsModal');
+  document.getElementById('settingsBtn').addEventListener('click', () => {
+    settingsModal.classList.remove('hidden');
+  });
+  document.getElementById('closeSettingsModal').addEventListener('click', () => {
+    settingsModal.classList.add('hidden');
+  });
+  settingsModal.addEventListener('click', (e) => {
+    if(e.target === settingsModal) settingsModal.classList.add('hidden');
   });
 
   sb.auth.onAuthStateChange((_event, session) => {
