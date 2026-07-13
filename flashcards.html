@@ -122,6 +122,23 @@
   .stat.new .n{ color: var(--sage-soft); }
   .stat.mastered .n{ color: var(--sage); }
 
+  .cloud-bar{
+    width:100%;
+    max-width: 640px;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    gap: 10px;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+  }
+  .cloud-status{
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-right: auto;
+  }
+  .cloud-status.synced{ color: var(--sage-soft); }
+
   .controls{
     width:100%;
     max-width: 640px;
@@ -380,6 +397,7 @@
     z-index: 100;
   }
   .modal-overlay.hidden{ display:none; }
+  .hidden{ display:none !important; }
   .modal-box{
     background: var(--ink-soft);
     border: 1px solid var(--line);
@@ -469,6 +487,12 @@
   <div class="sub">Each card you grade reshapes when it returns. Progress saves on this device.</div>
 </div>
 
+<div class="cloud-bar" id="cloudBar">
+  <span class="cloud-status" id="cloudStatus">Not signed in — progress stays on this device only.</span>
+  <button class="ghost" id="cloudSignInBtn">Sign in to sync</button>
+  <button class="ghost hidden" id="cloudSignOutBtn">Sign out</button>
+</div>
+
 <div class="stats-row" id="statsRow"></div>
 <button class="help-link" id="cardGuideBtn">How to read a card / your stats ?</button>
 
@@ -497,6 +521,20 @@
   <button class="ghost" id="importBtn" title="Load progress from a file">Import progress</button>
   <input type="file" id="importInput" accept=".json" style="display:none;">
   <button class="ghost" id="resetBtn" title="Reset all progress">Reset progress</button>
+</div>
+
+<div class="modal-overlay hidden" id="signInModal">
+  <div class="modal-box">
+    <h2>Sign in to sync</h2>
+    <p>Enter your email and we'll send you a magic link. Once signed in, your custom decks and review progress sync to your Supabase account and follow you to other devices.</p>
+    <input type="email" id="signInEmail" placeholder="you@example.com" autocomplete="email"
+      style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:14px; margin-top:6px;">
+    <p id="signInMessage" style="font-size:12.5px; color:var(--text-dim); min-height: 1.4em;"></p>
+    <div class="modal-actions">
+      <button class="modal-close" id="closeSignInModal" style="background:transparent; color:var(--text-dim);">Cancel</button>
+      <button class="modal-close" id="sendMagicLinkBtn">Send magic link</button>
+    </div>
+  </div>
 </div>
 
 <div class="modal-overlay hidden" id="deckFormatModal">
@@ -611,8 +649,15 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   Grading: <strong>Again</strong> resets the card · <strong>Hard</strong> grows it slowly · <strong>Good</strong> follows the normal schedule · <strong>Easy</strong> jumps it far ahead. This is the FSRS algorithm — the modern successor to SM‑2, using per-card difficulty and memory stability to predict recall.
 </div>
 
-<script>
+<script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
 (function(){
+  const SUPABASE_URL = 'https://qnaxidslzxqaccnmuwdv.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_U3Q356nyXzI2IvUpzY1Slg_4OIuplWC';
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  let currentUser = null; // set once a Supabase session is confirmed
+
   const STORAGE_KEY = 'flashcards_srs_progress_v1';
   const PHRASES_JSON_PATH = 'english_flashcards.json';
   const WORDS_JSON_PATH = 'english_words.json';
@@ -740,6 +785,123 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
     try{ localStorage.setItem(CUSTOM_DECKS_KEY, JSON.stringify(customCards)); }
     catch(e){ console.error('Could not save custom decks', e); }
   }
+
+  // ---- cloud sync (Supabase) --------------------------------------------
+  // Best-effort: the app works fully offline on localStorage; when signed in,
+  // custom decks and FSRS progress are additionally mirrored to Supabase so
+  // they follow the user to another device/browser.
+  async function pushCardsToCloud(cards){
+    if(!currentUser || cards.length === 0) return;
+    const rows = cards.map(c => ({
+      user_id: currentUser.id,
+      type: c.type || '',
+      front: c.front,
+      back: c.back,
+      meaning: c.meaning || '',
+      example: c.example || '',
+      level: c.level || 'B1'
+    }));
+    const { error } = await sb.from('cards').upsert(rows, { onConflict: 'user_id,type,front,back' });
+    if(error) console.error('Could not sync cards to Supabase', error);
+  }
+
+  async function pullCardsFromCloud(){
+    if(!currentUser) return [];
+    const { data, error } = await sb.from('cards').select('*').eq('user_id', currentUser.id);
+    if(error){ console.error('Could not fetch cards from Supabase', error); return []; }
+    return (data || []).map(row => ({
+      type: row.type, front: row.front, back: row.back,
+      meaning: row.meaning, example: row.example, level: row.level, source: 'custom'
+    }));
+  }
+
+  function mergeCloudCards(cloudCards){
+    const existingKeys = new Set(customCards.map(cardDedupKey));
+    const newOnes = cloudCards.filter(c => !existingKeys.has(cardDedupKey(c)));
+    if(newOnes.length === 0) return;
+    customCards = [...customCards, ...newOnes];
+    saveCustomDecks();
+    allCards = [...allCards, ...newOnes];
+  }
+
+  async function pushProgressRowToCloud(id, s){
+    if(!currentUser) return;
+    const row = {
+      user_id: currentUser.id, card_id: id,
+      state: s.state, difficulty: s.difficulty, stability: s.stability,
+      due: Math.round(s.due), reps: s.reps, lapses: s.lapses, interval: s.interval,
+      last_review: s.last_review == null ? null : Math.round(s.last_review),
+      updated_at: new Date().toISOString()
+    };
+    const { error } = await sb.from('progress').upsert(row, { onConflict: 'user_id,card_id' });
+    if(error) console.error('Could not sync progress to Supabase', error);
+  }
+
+  async function pushAllProgressToCloud(){
+    if(!currentUser) return;
+    const rows = Object.entries(progress).map(([id, s]) => ({
+      user_id: currentUser.id, card_id: id,
+      state: s.state, difficulty: s.difficulty, stability: s.stability,
+      due: Math.round(s.due), reps: s.reps, lapses: s.lapses, interval: s.interval,
+      last_review: s.last_review == null ? null : Math.round(s.last_review),
+      updated_at: new Date().toISOString()
+    }));
+    if(rows.length === 0) return;
+    const { error } = await sb.from('progress').upsert(rows, { onConflict: 'user_id,card_id' });
+    if(error) console.error('Could not sync progress to Supabase', error);
+  }
+
+  async function pullProgressFromCloud(){
+    if(!currentUser) return [];
+    const { data, error } = await sb.from('progress').select('*').eq('user_id', currentUser.id);
+    if(error){ console.error('Could not fetch progress from Supabase', error); return []; }
+    return data || [];
+  }
+
+  function mergeCloudProgress(cloudRows){
+    let changed = false;
+    for(const row of cloudRows){
+      const local = progress[row.card_id];
+      const cloudLastReview = row.last_review || 0;
+      const localLastReview = (local && local.last_review) || 0;
+      if(!local || cloudLastReview > localLastReview){
+        progress[row.card_id] = {
+          state: row.state, difficulty: row.difficulty, stability: row.stability,
+          due: row.due, reps: row.reps, lapses: row.lapses, interval: row.interval,
+          last_review: row.last_review
+        };
+        changed = true;
+      }
+    }
+    if(changed) saveProgress();
+  }
+
+  async function syncWithCloud(){
+    if(!currentUser) return;
+    setCloudStatus('Syncing…', false);
+    try{
+      const [cloudCards, cloudProgress] = await Promise.all([pullCardsFromCloud(), pullProgressFromCloud()]);
+      mergeCloudCards(cloudCards);
+      mergeCloudProgress(cloudProgress);
+      await Promise.all([pushCardsToCloud(customCards), pushAllProgressToCloud()]);
+      updateSourceFilterOptions();
+      populateDeckFilter();
+      buildQueue();
+      renderCard();
+      setCloudStatus(`Synced as ${currentUser.email}`, true);
+    }catch(e){
+      console.error('Cloud sync failed', e);
+      setCloudStatus('Sync failed — working offline', false);
+    }
+  }
+
+  function setCloudStatus(text, synced){
+    const el = document.getElementById('cloudStatus');
+    if(!el) return;
+    el.textContent = text;
+    el.classList.toggle('synced', !!synced);
+  }
+  // -----------------------------------------------------------------------
 
   function normalizeCard(raw, defaultType){
     const type = (raw.type && String(raw.type).trim()) || defaultType || '';
@@ -935,6 +1097,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
 
     progress[id] = s;
     saveProgress();
+    pushProgressRowToCloud(id, s);
   }
 
   function isDue(id){
@@ -1186,6 +1349,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         saveProgress();
         buildQueue();
         renderCard();
+        pushAllProgressToCloud();
         alert('Progress imported successfully.');
       } catch(err){
         alert('Could not read this file. Make sure it is a progress file exported from this app.');
@@ -1308,6 +1472,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
         populateDeckFilter();
         buildQueue();
         renderCard();
+        pushCardsToCloud(cards);
         alert(`Imported ${cards.length} card(s) successfully.` + (duplicateCount > 0 ? ` (${duplicateCount} duplicate(s) skipped.)` : ''));
       } catch(err){
         alert('Could not import this file: ' + err.message);
@@ -1341,13 +1506,76 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
   });
 
   resetBtn.addEventListener('click', () => {
-    if(confirm('This will erase all spaced repetition progress on this device. Continue?')){
+    const cloudNote = currentUser ? ' and from your Supabase account' : '';
+    if(confirm(`This will erase all spaced repetition progress on this device${cloudNote}. Continue?`)){
       progress = {};
       saveProgress();
       buildQueue();
       renderCard();
+      if(currentUser){
+        sb.from('progress').delete().eq('user_id', currentUser.id)
+          .then(({ error }) => { if(error) console.error('Could not clear cloud progress', error); });
+      }
     }
   });
+
+  // ---- auth UI ------------------------------------------------------------
+  let resolveCardsReady;
+  const cardsReadyPromise = new Promise(res => { resolveCardsReady = res; });
+
+  const cloudSignInBtn = document.getElementById('cloudSignInBtn');
+  const cloudSignOutBtn = document.getElementById('cloudSignOutBtn');
+  const signInModal = document.getElementById('signInModal');
+  const signInEmail = document.getElementById('signInEmail');
+  const signInMessage = document.getElementById('signInMessage');
+
+  function updateAuthUI(){
+    if(currentUser){
+      cloudSignInBtn.classList.add('hidden');
+      cloudSignOutBtn.classList.remove('hidden');
+      setCloudStatus(`Signed in as ${currentUser.email}`, true);
+    } else {
+      cloudSignInBtn.classList.remove('hidden');
+      cloudSignOutBtn.classList.add('hidden');
+      setCloudStatus('Not signed in — progress stays on this device only.', false);
+    }
+  }
+
+  cloudSignInBtn.addEventListener('click', () => {
+    signInMessage.textContent = '';
+    signInModal.classList.remove('hidden');
+    signInEmail.focus();
+  });
+  document.getElementById('closeSignInModal').addEventListener('click', () => {
+    signInModal.classList.add('hidden');
+  });
+  signInModal.addEventListener('click', (e) => {
+    if(e.target === signInModal) signInModal.classList.add('hidden');
+  });
+  document.getElementById('sendMagicLinkBtn').addEventListener('click', async () => {
+    const email = signInEmail.value.trim();
+    if(!email){ signInMessage.textContent = 'Enter an email address first.'; return; }
+    signInMessage.textContent = 'Sending…';
+    const { error } = await sb.auth.signInWithOtp({
+      email,
+      options: { emailRedirectTo: window.location.href }
+    });
+    signInMessage.textContent = error
+      ? `Could not send the link: ${error.message}`
+      : 'Magic link sent — check your email and open it on this device.';
+  });
+  cloudSignOutBtn.addEventListener('click', async () => {
+    await sb.auth.signOut();
+  });
+
+  sb.auth.onAuthStateChange((_event, session) => {
+    currentUser = session ? session.user : null;
+    updateAuthUI();
+    if(currentUser){
+      cardsReadyPromise.then(() => syncWithCloud());
+    }
+  });
+  // -----------------------------------------------------------------------
 
   async function init(){
     loadProgress();
@@ -1395,6 +1623,7 @@ Bonjour,bonjour,hello (informal),"Bonjour, ça va?",A1,French</pre>
           <p style="font-size:11px; opacity:0.6;">${err.message}</p>
         </div>`;
     }
+    resolveCardsReady();
   }
 
   init();

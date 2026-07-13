@@ -1,6 +1,6 @@
 # Flashcards — English SRS
 
-A single-file, no-build spaced-repetition flashcard app for English vocabulary, idioms, phrasal verbs and collocations. Everything lives in `flashcards.html` — no server-side code, no dependencies, no CDN.
+A single-file, no-build spaced-repetition flashcard app for English vocabulary, idioms, phrasal verbs and collocations. Everything lives in `flashcards.html` — no server-side code, no bundler. It loads the `@supabase/supabase-js` client from a CDN (`esm.sh`) for optional cloud sync — see [Cloud sync (Supabase)](#cloud-sync-supabase).
 
 Scheduling uses **FSRS** (Free Spaced Repetition Scheduler, v6 weights), implemented inline in the page.
 
@@ -21,7 +21,22 @@ Everything (review progress and imported decks) is saved in the browser's `local
 
 - Progress made on `http://localhost:8791/...` and progress made on the GitHub Pages URL are two separate stores.
 - Clearing browser data / using a private window wipes it.
-- Nothing is synced automatically across devices — use **Export progress** / **Export decks** to back up and **Import progress** / **Import deck** to restore elsewhere.
+- Nothing is synced automatically across devices unless you sign in (see below) — otherwise use **Export progress** / **Export decks** to back up and **Import progress** / **Import deck** to restore elsewhere.
+
+## Cloud sync (Supabase)
+
+Signing in ("Sign in to sync", top of the page) mirrors your custom decks and FSRS review progress to a [Supabase](https://supabase.com) project, so they follow you to another browser/device. `localStorage` stays the source of truth for offline use — the app works exactly as before if you never sign in.
+
+- **Auth**: email magic link (Supabase Auth). No passwords stored anywhere in this app.
+- **What syncs**: cards you've imported (`Import deck`) and your FSRS progress per card. The three bundled decks (`english_words.json`, `english_flashcards.json`, `english_grammar_tenses.json`) stay static files and are never written to Supabase.
+- **Security model**: the page embeds the Supabase project URL and its `anon`/`publishable` key directly in `flashcards.html`. That's expected — Supabase is designed so this key is safe to expose client-side. Actual access control is enforced by Postgres Row Level Security (RLS): every row in `cards` and `progress` carries a `user_id`, and the RLS policies only let a signed-in user read/write their own rows.
+
+### One-time setup (already done for this project)
+
+1. Create a project at [supabase.com](https://supabase.com) and grab its **Project URL** and **anon/publishable key** (Project Settings → API).
+2. Run [`supabase/schema.sql`](supabase/schema.sql) once in the Supabase SQL Editor (Project → SQL Editor → New query → paste → Run). It creates the `cards` and `progress` tables with RLS enabled, scoped to `auth.uid()`. It's idempotent, so re-running it is safe.
+3. Paste the URL/key into the `SUPABASE_URL` / `SUPABASE_ANON_KEY` constants near the top of the `<script type="module">` block in `flashcards.html`.
+4. In Supabase → **Authentication → URL Configuration**, add every URL you'll actually open the app from (e.g. `http://localhost:8791/flashcards.html` and your GitHub Pages URL) to **Redirect URLs**, so the magic-link email can send people back to the right place.
 
 ## Downloading the ZIP and running it (no git required)
 
