@@ -538,22 +538,24 @@
 <div class="modal-overlay hidden" id="signInModal">
   <div class="modal-box">
     <h2>Sign in to sync</h2>
-    <p>Enter your email and we'll send you a 6-digit code. Once signed in, your custom decks and review progress sync to your Supabase account and follow you to other devices.</p>
+    <p>Enter your email and we'll send you a sign-in link.</p>
     <input type="email" id="signInEmail" placeholder="you@example.com" autocomplete="email"
       style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:14px; margin-top:6px;">
     <p id="signInMessage" style="font-size:12.5px; color:var(--text-dim); min-height: 1.4em;"></p>
     <div class="modal-actions">
       <button class="modal-close" id="closeSignInModal" style="background:transparent; color:var(--text-dim);">Cancel</button>
-      <button class="modal-close" id="sendMagicLinkBtn">Send code</button>
+      <button class="modal-close" id="sendMagicLinkBtn">Send link</button>
     </div>
 
     <div id="otpCodeSection" class="hidden" style="margin-top:14px; padding-top:14px; border-top:1px solid var(--line);">
-      <p style="margin:0 0 6px;">Enter the 6-digit code from the email. If you opened the email's link instead and it said "Not signed in", that's expected on an iPhone home-screen app — use the code here instead.</p>
-      <input type="text" id="signInCode" placeholder="123456" inputmode="numeric" autocomplete="one-time-code" maxlength="6"
-        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:16px; letter-spacing:3px; margin-top:6px;">
+      <p style="margin:0 0 6px;">
+        On an iPhone app added to the Home Screen, tapping the link opens Safari instead — which signs in there, not here. Instead: in the Mail app, <strong>long-press the "Log In" link</strong> and choose <strong>Copy Link</strong> (don't tap it), then paste it below.
+      </p>
+      <input type="text" id="signInLinkPaste" placeholder="Paste the copied link here" autocomplete="off"
+        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--line); background:var(--ink); color:var(--parchment); font-family:'Inter',sans-serif; font-size:13px; margin-top:6px;">
       <div class="modal-actions">
         <span></span>
-        <button class="modal-close" id="verifyCodeBtn">Verify code</button>
+        <button class="modal-close" id="verifyLinkBtn">Confirm link</button>
       </div>
     </div>
   </div>
@@ -1554,7 +1556,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
   const signInEmail = document.getElementById('signInEmail');
   const signInMessage = document.getElementById('signInMessage');
   const otpCodeSection = document.getElementById('otpCodeSection');
-  const signInCode = document.getElementById('signInCode');
+  const signInLinkPaste = document.getElementById('signInLinkPaste');
 
   function updateAuthUI(){
     if(currentUser){
@@ -1570,7 +1572,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
   cloudSignInBtn.addEventListener('click', () => {
     signInMessage.textContent = '';
-    signInCode.value = '';
+    signInLinkPaste.value = '';
     otpCodeSection.classList.add('hidden');
     settingsModal.classList.add('hidden');
     signInModal.classList.remove('hidden');
@@ -1591,21 +1593,32 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
       options: { emailRedirectTo: window.location.href }
     });
     if(error){
-      signInMessage.textContent = `Could not send the code: ${error.message}`;
+      signInMessage.textContent = `Could not send the link: ${error.message}`;
       return;
     }
-    signInMessage.textContent = 'Code sent — check your email.';
+    signInMessage.textContent = 'Link sent — check your email. On desktop/Safari-tab use, just tap it. On an iPhone Home Screen app, see below.';
     otpCodeSection.classList.remove('hidden');
-    signInCode.focus();
   });
-  document.getElementById('verifyCodeBtn').addEventListener('click', async () => {
-    const email = signInEmail.value.trim();
-    const token = signInCode.value.trim();
-    if(!token){ signInMessage.textContent = 'Enter the 6-digit code first.'; return; }
+  document.getElementById('verifyLinkBtn').addEventListener('click', async () => {
+    const raw = signInLinkPaste.value.trim();
+    if(!raw){ signInMessage.textContent = 'Paste the link from the email first.'; return; }
+    let tokenHash, type;
+    try{
+      const url = new URL(raw);
+      tokenHash = url.searchParams.get('token') || url.searchParams.get('token_hash');
+      type = url.searchParams.get('type') || 'magiclink';
+    }catch(e){
+      signInMessage.textContent = 'That doesn\'t look like a valid link. Make sure you copied the whole URL.';
+      return;
+    }
+    if(!tokenHash){
+      signInMessage.textContent = 'Could not find a sign-in code in that link.';
+      return;
+    }
     signInMessage.textContent = 'Verifying…';
-    const { error } = await sb.auth.verifyOtp({ email, token, type: 'email' });
+    const { error } = await sb.auth.verifyOtp({ token_hash: tokenHash, type });
     if(error){
-      signInMessage.textContent = `Could not verify the code: ${error.message}`;
+      signInMessage.textContent = `Could not verify the link: ${error.message}`;
       return;
     }
     signInMessage.textContent = 'Signed in!';

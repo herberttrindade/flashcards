@@ -38,6 +38,14 @@ Signing in ("Sign in to sync", top of the page) mirrors your custom decks and FS
 3. Paste the URL/key into the `SUPABASE_URL` / `SUPABASE_ANON_KEY` constants near the top of the `<script type="module">` block in `flashcards.html`.
 4. In Supabase → **Authentication → URL Configuration**, add every URL you'll actually open the app from (e.g. `http://localhost:8791/flashcards.html` and your GitHub Pages URL) to **Redirect URLs**, so the magic-link email can send people back to the right place.
 
+### Signing in from an iPhone Home Screen app
+
+If you've added the page to your iPhone's Home Screen ("Add to Home Screen"), it runs in its own storage container, separate from Safari. Tapping the magic link in the Mail app opens Safari (or Mail's in-app browser) and signs you in *there* — not in the Home Screen app, which will still show "Not signed in".
+
+Workaround built into the app: in the "Sign in to sync" dialog, after sending the link, **long-press the "Log In" link in the email and choose "Copy Link"** (don't tap it), then paste it into the "Paste the copied link here" field and hit **Confirm link**. This verifies the link's token directly inside the already-open Home Screen app, with no navigation to Safari at all.
+
+(A cleaner UX — showing a plain 6-digit code in the email itself, typed directly into the app — requires customizing the Magic Link email template, which Supabase locks behind configuring a [custom SMTP provider](https://supabase.com/docs/guides/auth/auth-smtp) even on the free plan. The paste-link method above works without that.)
+
 ## Downloading the ZIP and running it (no git required)
 
 If you just want the app on your computer without using `git`:
